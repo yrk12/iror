@@ -9,22 +9,19 @@ import "./navbar.css";
 function Navbar() {
   
   return (
-    <div className="navbar_main">
+    <navbar className="navbar_main">
       <div className="iror">
-        <p><a href="/">IROR</a></p>
+      <h3><a href="/" style={{ textDecoration: 'none' }}>IROR</a></h3>
       </div>
-      <div className="nav_buttons">
+      <div className="nav_buttons_C">
+        <div>
+            <Button variant="contained" href="./login">LOGIN</Button>
+        </div>
         <div>
           <Button variant="outlined" href="./register">REGISTER</Button>
         </div>
-        <div>
-          <Button variant="contained" href="./login">LOGIN</Button>
-        </div>
-        <div className="">
-          <Button variant="outlined">REGISTER</Button>
-        </div>
       </div>
-    </div>
+    </navbar>
   );
 }
 
