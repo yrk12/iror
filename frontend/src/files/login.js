@@ -1,11 +1,14 @@
 import React from "react";
+
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import "./files.css";
 import trainImg from "./train_img.jpg";
+import "./files.css";
+
 import Navbar from './components/navbar'
 import Footer from './components/footer'
+
 
 
 
@@ -25,7 +28,7 @@ function Login() {
               required
               id="outlined-required"
               label="Email"
-              defaultValue="Hello World"
+              defaultValue="abc@gmail.com"
             />
             <br /><br />
             <TextField
