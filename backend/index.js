@@ -5,13 +5,18 @@ const pool = require("./connect")
 app.use(cors());
 app.use(express.json());
 
-app.get("/todos", async(req, res) =>{
+app.post("/register", async(req, res) =>{
     try {
-        const obj=await pool.query("SELECT * FROM TODO");
-        console.log(1);
-        res.json(obj);
+        req=req.body;
+        console.log(req);   
+        console.log(req.password);
+        const newUser = await pool.query(
+            "INSERT INTO Users (FirstName, LastName, Email, ContactNo, Password) VALUES ($1, $2, $3, $4, $5)",
+            [req.fname, req.lname, req.email, req.contactNo, req.Password]
+        );
+        res.json({created: true});
     } catch (err) {
-        console.error(err.message);
+        res.json({created: false});
     }
 });
 
