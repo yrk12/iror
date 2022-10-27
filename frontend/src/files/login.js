@@ -24,12 +24,8 @@ function Login() {
         <div className="login_input">
           <div>
             <h3>Login</h3>
-            <TextField
-              required
-              id="outlined-required"
-              label="Email"
-              defaultValue="abc@gmail.com"
-            />
+            <TextField id="outlined-search" label="Email" type="search" />
+
             <br /><br />
             <TextField
               id="outlined-password-input"
