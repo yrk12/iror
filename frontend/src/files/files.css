@@ -82,3 +82,35 @@ small, .text_small {font-size: 0.8rem;}
     margin: 0px;
     object-fit: contain;
 }
+
+.homepage_main {
+    display: flex;
+}
+
+.train_query {
+    display: flex;
+    flex: 1;
+    justify-content: center ;
+}
+
+.train_image_homepage {
+    flex: 1;
+}
+
+.train_enquiry_homepage {
+    background-color: #E7F1FF;
+    display: flex;
+
+}
+
+.search_train_homepage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.find_pnr_homepage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
