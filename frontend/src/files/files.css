@@ -1,0 +1,76 @@
+.login_page {
+    display: flex;
+    flex-direction: column;
+}
+
+.header_login {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+}
+
+.login_main {
+    display: flex;
+
+}
+
+.login_5 {
+    width: 50%;
+}
+.login_4 {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+
+.train_image {
+    background-color: bisque;
+    width: 50%;
+
+}
+
+
+
+.login_input {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+
+.navbar_main {
+    display: flex;
+    background-color: #E7F1FF;
+
+}
+
+.iror {
+    flex : 1;
+    color: #0a68ed;
+}
+
+.nav_buttons {
+    flex : 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.train_image img{
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+ }
+
+
+ .footer_main {
+    background-color: #363636;
+    color: azure;
+    font-size: 50px;
+ }
