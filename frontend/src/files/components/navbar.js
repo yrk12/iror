@@ -10,12 +10,12 @@ function Navbar() {
       <div className="iror">
         <h3>IROR</h3>
       </div>
-      <div className="nav_buttons">
-        <div>
-          <Button variant="outlined">REGISTER</Button>
-        </div>
-        <div>
+      <div className="nav_buttons_C">
+      <div>
           <Button variant="contained">LOGIN</Button>
+        </div>
+        <div className="">
+          <Button variant="outlined">REGISTER</Button>
         </div>
       </div>
     </div>

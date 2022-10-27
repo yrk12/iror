@@ -1,16 +1,26 @@
 .navbar_main {
     display: flex;
     background-color: var(--bgBlue);
-
+    padding: 10px 0px;
 }
 
 .iror {
     flex : 1;
     color: var(--primaryBlue);
+    margin: auto;
+    padding-left: 100px;
 }
 
-.nav_buttons {
+.nav_buttons_C {
     flex : 1;
     display: flex;
-    justify-content: space-around;
+    margin: auto;
+    padding-right: 100px;
+    flex-direction: row-reverse;
+    gap: 40px;
 }
+
+.nav_buttons{
+
+}
+
