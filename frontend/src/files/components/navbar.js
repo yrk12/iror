@@ -1,12 +1,14 @@
 import React from "react";
-import "../files.css";
 import Button from "@mui/material/Button";
+
+import "../files.css";
+import "./navbar.css";
 
 function Navbar() {
   return (
     <div className="navbar_main">
       <div className="iror">
-        <p>IROR</p>
+        <h3>IROR</h3>
       </div>
       <div className="nav_buttons">
         <div>

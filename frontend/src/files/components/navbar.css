@@ -1,0 +1,16 @@
+.navbar_main {
+    display: flex;
+    background-color: var(--bgBlue);
+
+}
+
+.iror {
+    flex : 1;
+    color: var(--primaryBlue);
+}
+
+.nav_buttons {
+    flex : 1;
+    display: flex;
+    justify-content: space-around;
+}
