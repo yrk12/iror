@@ -1,0 +1,36 @@
+:root{
+    --primaryBlue: #1976D2;
+    --secondaryRed: #EF5350;
+    --secondaryBlue: #03A9F4;
+    --secondaryGreen: #4CAF50;
+    --bgWhite: #FDFDFF;
+    --bgBlack: #363636;
+    --bgBlue: #E7F1FF;
+}
+
+.navbar_main {
+    display: flex;
+    background-color: var(--bgBlue);
+    padding: 10px 0px;
+}
+
+.iror {
+    flex : 1;
+    color: var(--primaryBlue);
+    margin: auto;
+    padding-left: 100px;
+}
+
+.iror a:visited{
+    color: var(--primaryBlue);
+}
+
+.nav_buttons_C {
+    flex : 1;
+    display: flex;
+    margin: auto;
+    padding-right: 100px;
+    flex-direction: row-reverse;
+    gap: 40px;
+}
+
