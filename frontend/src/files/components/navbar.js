@@ -1,18 +1,24 @@
-import React from "react";
-import Button from "@mui/material/Button";
+import React from "react"
+import { Link } from "react-router-dom"
+import {useNavigate} from 'react-router-dom'
+import Button from "@mui/material/Button"
 
 import "../files.css";
 import "./navbar.css";
 
 function Navbar() {
+  
   return (
     <div className="navbar_main">
       <div className="iror">
-        <h3>IROR</h3>
+        <p><a href="/">IROR</a></p>
       </div>
-      <div className="nav_buttons_C">
-      <div>
-          <Button variant="contained">LOGIN</Button>
+      <div className="nav_buttons">
+        <div>
+          <Button variant="outlined" href="./register">REGISTER</Button>
+        </div>
+        <div>
+          <Button variant="contained" href="./login">LOGIN</Button>
         </div>
         <div className="">
           <Button variant="outlined">REGISTER</Button>

@@ -8,7 +8,7 @@ import trainImg from "./train_img.jpg";
 function Register() {
     return (
         <div className="login_page">
-            <Navbar />
+            <Navbar/>
             <div className="login_main">
         <div className="train_image">
           <img src={trainImg} className="train_img" />
@@ -56,7 +56,7 @@ function Register() {
           </div>
         </div>
       </div>
-            <Footer />
+           <Footer/> 
         </div>
     );
 }
