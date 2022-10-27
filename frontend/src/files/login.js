@@ -1,30 +1,23 @@
 import React from "react";
 
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import trainImg from "./train_img.jpg";
+import trainImg from "./register_img.png";
 import "./files.css";
-
-import Navbar from './components/navbar'
-import Footer from './components/footer'
-
-
-
-
 
 function Login() {
   return (
     <div className="login_page">
-      <Navbar/>
       <div className="login_main">
         <div className="train_image">
-          <img src={trainImg} className="train_img" />
+          <img src={trainImg}/>
         </div>
         <div className="login_input">
           <div>
             <h3>Login</h3>
+            <br />
             <TextField
+              sx={{width: 319}}
               required
               id="outlined-required"
               label="Email"
@@ -32,7 +25,9 @@ function Login() {
             />
             <br /><br />
             <TextField
+              sx={{width: 319}}
               id="outlined-password-input"
+              required
               label="Password"
               type="password"
               autoComplete="current-password"
@@ -42,7 +37,6 @@ function Login() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

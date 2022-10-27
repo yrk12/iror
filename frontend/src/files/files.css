@@ -62,22 +62,12 @@ small, .text_small {font-size: 0.8rem;}
 
 .login_main {
     display: flex;
+    height: 996px;
 }
-
-.login_5 {
-    width: 50%;
-}
-.login_4 {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-}
-
 
 .train_image {
-    background-color: bisque;
     width: 50%;
-
+    overflow: hidden;
 }
 
 .login_input {
@@ -85,14 +75,10 @@ small, .text_small {font-size: 0.8rem;}
     display: flex;
     justify-content: center;
     margin-top: 100px;
-    margin-bottom: 100px;
 }
 
 .train_image img{
     width: 100%;
-    object-fit: cover;
-    height: auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin: 0px;
+    object-fit: contain;
 }

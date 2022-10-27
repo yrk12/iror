@@ -11,11 +11,12 @@
 .footer_main {
     background-color: var(--bgBlack);
     color: var(--bgWhite);
+    padding: 30px 0px;
 }
 
 .footer_content {
     display: flex;
-    margin: 30px 100px;
+    margin: 0px 100px;
     gap: 30px;
 }
 

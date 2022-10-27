@@ -1,22 +1,21 @@
 import React from "react";
-import Navbar from './components/navbar'
-import Footer from './components/footer'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import trainImg from "./train_img.jpg";
+import trainImg from "./register_img.png";
 
 function Register() {
     return (
         <div className="login_page">
-            <Navbar/>
             <div className="login_main">
         <div className="train_image">
-          <img src={trainImg} className="train_img" />
+          <img src={trainImg}/>
         </div>
         <div className="login_input">
           <div>
             <h3>Register</h3>
+            <br />
             <TextField
+              sx={{width: 319}}
               required
               id="outlined-required"
               label="First Name"
@@ -25,6 +24,7 @@ function Register() {
             <br />
             <br />
             <TextField
+              sx={{width: 319}}
               required
               id="outlined-required"
               label="Last Name"
@@ -32,6 +32,7 @@ function Register() {
             />
             <br /> <br />
             <TextField
+              sx={{width: 319}}
               required
               id="outlined-required"
               label="Email"
@@ -39,6 +40,7 @@ function Register() {
             />
             <br /> <br />
             <TextField
+              sx={{width: 319}}
               required
               id="outlined-required"
               label="Contact No"
@@ -46,6 +48,7 @@ function Register() {
             />
             <br /> <br />
             <TextField
+              sx={{width: 319}}
               id="outlined-password-input"
               label="Password"
               type="password"
@@ -56,7 +59,6 @@ function Register() {
           </div>
         </div>
       </div>
-           <Footer/> 
         </div>
     );
 }
