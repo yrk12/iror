@@ -4,7 +4,7 @@ import "./Schedule.css";
 function Schedule() {
     // var data = props.props;
     return (
-        <div>
+        <div className="trainSchedule">
             <h1>Train Schedule</h1>
             <div className="info">
                 <div>
