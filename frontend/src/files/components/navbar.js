@@ -9,7 +9,7 @@ import "./navbar.css";
 function Navbar() {
   
   return (
-    <navbar className="navbar_main">
+    <div className="navbar_main">
       <div className="iror">
       <h3><a href="/" style={{ textDecoration: 'none' }}>IROR</a></h3>
       </div>
@@ -21,7 +21,7 @@ function Navbar() {
           <Button variant="outlined" href="./register">REGISTER</Button>
         </div>
       </div>
-    </navbar>
+    </div>
   );
 }
 
