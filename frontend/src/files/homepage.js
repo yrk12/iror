@@ -19,16 +19,23 @@ function Homepage() {
           <div className="train_query_input">
             <p>Book Your Ticket </p>
 
-            <TextField id="outlined-search" label="Departure" type="search" />
-
+            <TextField 
+            id="outlined-search" 
+            label="Departure"
+            type="search" />
             <br />
             <br />
 
-            <TextField id="outlined-search" label="Arrival" type="search" />
-
+            <TextField 
+            id="outlined-search" 
+            label="Arrival" 
+            type="search" />
             <br />
             <br />
-            <TextField id="outlined-search" label="DD/MM/YYYY" type="search" />
+            <TextField 
+            id="outlined-search" 
+            label="DD/MM/YYYY" 
+            type="search" />
 
             <br />
             <br />
