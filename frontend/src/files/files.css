@@ -114,3 +114,14 @@ small, .text_small {font-size: 0.8rem;}
     display: flex;
     justify-content: center;
 }
+
+
+.error-message {
+    color: rgba(255, 0, 0, 0.6);
+    margin-right: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .error-message::before {
+    content: "⚠ ";
+  }
