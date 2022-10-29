@@ -1,5 +1,6 @@
 import React , { useState } from "react";
 import Button from "@mui/material/Button";
+import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import trainImg from "./register_img.png";
 
@@ -88,7 +89,7 @@ function Register() {
 
     return (
         <div className="login_page">
-            <div className="login_main">
+        <div className="login_main">
         <div className="train_image">
           <img src={trainImg}/>
         </div>
@@ -96,59 +97,56 @@ function Register() {
           <div>
             <h3>Register</h3>
             <br />
-            <TextField
-              sx={{width: 319}}
-              required
-              name="fname"
-              id="outlined-required"
-              label="First Name"
-              value={ user.fname }
-              onChange={handleChange}
-            /> 
-            <br />
-            <br />
-            <TextField
-              sx={{width: 319}}
-              required
-              id="outlined-required"
-              name="lname"
-              label="Last Name"
-              value={ user.lname }
-              onChange={handleChange}
-            />
-            <br /> <br />
-            <TextField
-              sx={{width: 319}}
-              required
-              id="outlined-required"
-              name="email"
-              label="Email"
-              value={ user.email }
-              onChange={handleChange}
-            />
-            <br /> <br />
-            <TextField
-              sx={{width: 319}}
-              required
-              id="outlined-required"
-              name="contactNo"
-              label="Contact No"
-              value={ user.contactNo }
-              onChange={handleChange}
-            />
-            <br /> <br />
-            <TextField
-              sx={{width: 319}}
-              id="outlined-password-input"
-              label="Password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              value={ user.Password }
-              onChange={handleChange}
-            />
-            <br /><br />
-            <Button onClick={ onSubmitForm } variant="contained">Create Account</Button>
+            <form>
+              <TextField
+                sx={{width: 319}}
+                required
+                name="fname"
+                label="First Name"
+                value={ user.fname }
+                onChange={handleChange}
+              /> 
+              <br />
+              <br />
+              <TextField
+                sx={{width: 319}}
+                required
+                name="lname"
+                label="Last Name"
+                value={ user.lname }
+                onChange={handleChange}
+              />
+              <br /> <br />
+              <TextField
+                sx={{width: 319}}
+                required
+                name="email"
+                label="Email"
+                value={ user.email }
+                onChange={handleChange}
+              />
+              <br /> <br />
+              <TextField
+                sx={{width: 319}}
+                required
+                name="contactNo"
+                label="Contact No"
+                value={ user.contactNo }
+                onChange={handleChange}
+              />
+              <br /> <br />
+              <TextField
+                sx={{width: 319}}
+                label="Password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                value={ user.Password }
+                onChange={handleChange}
+              />
+              <br /><br />
+              <Button onClick={ onSubmitForm } variant="contained">Create Account</Button>
+            </form>
           </div>
         </div>
       </div>
