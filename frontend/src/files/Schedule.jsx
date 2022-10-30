@@ -5,7 +5,7 @@ function Schedule() {
     // var data = props.props;
     return (
         <div className="trainSchedule">
-            <h1>Train Schedule</h1>
+            <span className="H1"><h1>Train Schedule</h1></span>
             <div className="info">
                 <div>
                     <h3>Train Number</h3>

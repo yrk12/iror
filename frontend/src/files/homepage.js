@@ -10,17 +10,11 @@ import Pnrsearch from "./components/pnrsearch";
 
 function Homepage() {
   return (
-    <div className="abc">
-      <div className="train_query">
-        <Bookticket />
-      </div>
-      <div className="search_train_homepage">
-        <Trainsearch />
-      </div>
-      <div className="find_pnr_homepage">
-        <Pnrsearch />
-      </div>
-    </div>
+    <>
+      <Bookticket />
+      <Trainsearch />
+      <Pnrsearch />
+    </>
 
   );
 }

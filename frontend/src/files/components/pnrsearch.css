@@ -1,0 +1,10 @@
+.pnrsearch{
+    color: var(--primaryBlue);
+    display: flex;
+    flex-direction: column;
+    padding: 0px 100px 0px 100px;
+}
+
+.flex-child{
+
+}

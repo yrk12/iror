@@ -96,32 +96,3 @@ small, .text_small {font-size: 0.8rem;}
 .train_image_homepage {
     flex: 1;
 }
-
-.train_enquiry_homepage {
-    background-color: #E7F1FF;
-    display: flex;
-
-}
-
-.search_train_homepage {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.find_pnr_homepage {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-
-.error-message {
-    color: rgba(255, 0, 0, 0.6);
-    margin-right: 20px;
-    margin-bottom: 5px;
-  }
-  
-  .error-message::before {
-    content: "⚠ ";
-  }
