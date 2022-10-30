@@ -38,12 +38,9 @@ function Trainsearch() {
 
   return (
     <div>
-      <p>Search Train</p>
-      <br />
+      <h2>Search Train</h2>
       <form>
         <TextField required id="outlined-required" label="Train Number" onChange={handleChange}/>
-        <br />
-        <br />
         <Button onClick={ onSubmitForm } variant="contained">FIND</Button>
       </form>
     </div>

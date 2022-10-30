@@ -56,18 +56,12 @@ function Bookticket() {
   }
 
   return (
-    <div className="train_query_input">
-      <p>Book Your Ticket </p>
+    <div>
+      <h1>Book Your Ticket </h1>
       <form>
         <TextField id="outlined-search" label="Departure" type="search" name="departure" onChange={handleChange}/>
-        <br />
-        <br />
         <TextField id="outlined-search" label="Arrival" type="search" name="arrival" onChange={handleChange}/>
-        <br />
-        <br />
         <input type="date" id="Jdate" lable="date" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="date" onChange={handleChange}></input>
-        <br />
-        <br />
         <Button onClick={ onSubmitForm } variant="contained">SEARCH TRAINS</Button>
       </form>
     </div>

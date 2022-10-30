@@ -7,11 +7,9 @@ import Button from "@mui/material/Button";
 function Pnrsearch() {
   return (
     <div>
-      <p>Find My PNR</p>
+      <h2>Find My PNR</h2>
       <form>
-        <br />
         <TextField required id="outlined-required" label="PNR Enquiry" /> <br />
-        <br />
         <Button variant="contained">ENQUIRE</Button>
       </form>
     </div>
