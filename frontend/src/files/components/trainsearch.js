@@ -41,9 +41,9 @@ function Trainsearch() {
     <div className="trainsearch">
       <div className="flex-child">
         <h2>Search Train</h2>
-        <form>
+        <form onSubmit={ onSubmitForm }>
           <TextField required id="outlined-required" label="Train Number" onChange={handleChange}/>
-          <Button onClick={ onSubmitForm } variant="contained">FIND</Button>
+          <Button type="sumbit" variant="contained">FIND</Button>
         </form>
       </div>
       <div className="flex-child">

@@ -12,7 +12,7 @@ function Pnrsearch() {
         <h2>Find My PNR</h2>
         <form>
           <TextField required id="outlined-required" label="PNR Enquiry" />
-          <Button variant="contained">ENQUIRE</Button>
+          <Button type="submit" variant="contained">ENQUIRE</Button>
         </form>
       </div>
       <div className="flex-child">

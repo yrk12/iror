@@ -96,7 +96,7 @@ function Register() {
           <div>
             <h3>Register</h3>
             <br />
-            <form>
+            <form onSubmit={ onSubmitForm }>
               <TextField
                 sx={{width: 319}}
                 required
@@ -121,6 +121,7 @@ function Register() {
                 required
                 name="email"
                 label="Email"
+                type="email"
                 value={ user.email }
                 onChange={handleChange}
               />
@@ -144,7 +145,7 @@ function Register() {
                 onChange={handleChange}
               />
               <br /><br />
-              <Button onClick={ onSubmitForm } variant="contained">Create Account</Button>
+              <Button type="submit" variant="contained">Create Account</Button>
             </form>
           </div>
         </div>

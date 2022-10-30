@@ -60,11 +60,11 @@ function Bookticket() {
     <div className="bookticket">
       <div className="flex-child">
         <h1>Book Your Ticket </h1>
-        <form>
+        <form onSubmit={ onSubmitForm }>
           <TextField id="outlined-search" label="Departure" type="search" name="departure" onChange={handleChange}/>
           <TextField id="outlined-search" label="Arrival" type="search" name="arrival" onChange={handleChange}/>
           <input type="date" id="Jdate" lable="date" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="date" onChange={handleChange}></input>
-          <Button onClick={ onSubmitForm } variant="contained">SEARCH TRAINS</Button>
+          <Button type="submit" variant="contained">SEARCH TRAINS</Button>
         </form>
       </div>
       <div className="flex-child">
