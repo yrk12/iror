@@ -3,14 +3,19 @@ import "../files.css";
 import "./bookticket.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Details from "../Details";
 
 function Bookticket() {
+
+  const [flag, setFlag] = useState(false);
+
   const [trainDeatails, setTrainDetails] = useState({
     departure: "",
     arrival: "",
     date: ""
   });
 
+  const [trainResult, setTrainResult] = useState([]);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -22,10 +27,20 @@ function Bookticket() {
         });
         let res=await response.json();
         console.log(res);
+        setTrainResult(prevValue => {
+          return res;
+        })
+        console.log(trainResult);
+        console.log("chaning states")
+        setFlag(true);
     }
     catch (err){
       console.log(err);
     }
+  }
+
+  function showTrains(train){
+    return (<Details key={ train.trainid } props={ train }/>);
   }
 
   function handleChange(event){
@@ -68,7 +83,25 @@ function Bookticket() {
         </form>
       </div>
       <div className="flex-child">
-            {/* Map goes here */}
+        
+        <div>
+          {flag == false ? " " : <div>
+            <h3 style={{margin: '40px 100px '}}>{ trainResult.length } Results</h3>
+            <div>
+              {trainResult.length == 0 ? " " : <div>
+                <div className="information">
+                  <div className="data"><h3>Train Name and No</h3></div>
+                  <div className="data"><h3>Departure</h3></div>
+                  <div className="data"><h3>Duration</h3></div>
+                  <div className="data"><h3>Arrival</h3></div>
+                </div>
+                {trainResult.map(showTrains)}
+              </div>
+              }
+            </div>
+          </div>}
+        </div>
+          
       </div>
     </div>
   );

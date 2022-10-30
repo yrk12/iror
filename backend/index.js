@@ -107,7 +107,7 @@ app.post("/getTrains", async(req, res) =>{
                 trainName: currentTrain.trainname,
                 runsOn: currentTrain.runson,
                 remainingSeats: remainingSeats.min,
-                arrivaltime: arrivalTime,
+                arrivalTime: arrivalTime,
                 departureTime: departureTime
             })
         }
