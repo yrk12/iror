@@ -1,19 +1,23 @@
 import React from "react";
 
 import "../files.css";
+import "./pnrsearch.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 function Pnrsearch() {
   return (
-    <div>
-      <p>Find My PNR</p>
-      <form>
-        <br />
-        <TextField required id="outlined-required" label="PNR Enquiry" /> <br />
-        <br />
-        <Button variant="contained">ENQUIRE</Button>
-      </form>
+    <div className="pnrsearch">
+      <div className="flex-child">
+        <h2>Find My PNR</h2>
+        <form>
+          <TextField required id="outlined-required" label="PNR Enquiry" />
+          <Button variant="contained">ENQUIRE</Button>
+        </form>
+      </div>
+      <div className="flex-child">
+        {/* Map goes here */}
+      </div>
     </div>
   );
 }

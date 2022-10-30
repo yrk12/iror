@@ -1,5 +1,6 @@
 import React, { useState }from "react";
 import "../files.css";
+import "./bookticket.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
@@ -56,20 +57,19 @@ function Bookticket() {
   }
 
   return (
-    <div className="train_query_input">
-      <p>Book Your Ticket </p>
-      <form>
-        <TextField id="outlined-search" label="Departure" type="search" name="departure" onChange={handleChange}/>
-        <br />
-        <br />
-        <TextField id="outlined-search" label="Arrival" type="search" name="arrival" onChange={handleChange}/>
-        <br />
-        <br />
-        <input type="date" id="Jdate" lable="date" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="date" onChange={handleChange}></input>
-        <br />
-        <br />
-        <Button onClick={ onSubmitForm } variant="contained">SEARCH TRAINS</Button>
-      </form>
+    <div className="bookticket">
+      <div className="flex-child">
+        <h1>Book Your Ticket </h1>
+        <form>
+          <TextField id="outlined-search" label="Departure" type="search" name="departure" onChange={handleChange}/>
+          <TextField id="outlined-search" label="Arrival" type="search" name="arrival" onChange={handleChange}/>
+          <input type="date" id="Jdate" lable="date" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="date" onChange={handleChange}></input>
+          <Button onClick={ onSubmitForm } variant="contained">SEARCH TRAINS</Button>
+        </form>
+      </div>
+      <div className="flex-child">
+            {/* Map goes here */}
+      </div>
     </div>
   );
 }

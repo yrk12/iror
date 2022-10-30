@@ -1,6 +1,5 @@
 import React , { useState } from "react";
 import Button from "@mui/material/Button";
-import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import trainImg from "./register_img.png";
 
