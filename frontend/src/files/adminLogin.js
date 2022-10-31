@@ -38,15 +38,15 @@ function AdminLogin(props) {
       });
       let res = await response.json();
       console.log(res);
-      // if(!res.success){
-      //   alert("Fuck You");
-      // }
-      // else{
-      //   sessionStorage.setItem("typeUser", "user");
-      //   sessionStorage.setItem("userID", "user");
-      //   alert("Successfully Logged In");
-      //   window.location.href = "/";
-      // }
+      if(!res.success){
+        alert("Login Failed");
+      }
+      else{
+        sessionStorage.setItem("typeUser", "admin");
+        sessionStorage.setItem("userID", res.adminId);
+        alert("Successfully Logged In");
+        window.location.href = "/";
+      }
     } catch (err) {
       console.log(err);
     }

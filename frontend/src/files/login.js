@@ -39,11 +39,11 @@ function Login(props) {
       let res = await response.json();
       console.log(res);
       if(!res.success){
-        alert("Fuck You");
+        alert("Login Failed");
       }
       else{
         sessionStorage.setItem("typeUser", "user");
-        sessionStorage.setItem("userID", "user");
+        sessionStorage.setItem("userID", res.userId);
         alert("Successfully Logged In");
         window.location.href = "/";
       }
