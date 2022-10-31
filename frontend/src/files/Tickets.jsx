@@ -1,5 +1,6 @@
 import React from "react";
 import "./Details.css";
+import Button from "@mui/material/Button";
 
 function Tickets() {
     return (
@@ -11,8 +12,8 @@ function Tickets() {
                     <h4>PNR: 12321JK12312</h4>
                     <h4>2 Passengers</h4>
                     <div style={{display: 'flex'}}>
-                        <button>Cancel Ticket</button>
-                        <button>Book Now</button>
+                        <Button variant="outlined" style={{marginRight : '30px', border: '1px solid #EF5350', borderRadius: '4px', color: '#EF5350' }}>Cancel Ticket</Button>
+                        <Button variant="contained" style={{backgroundColor: '#03A9F4'}}>Print Ticket</Button>
                     </div>
                 </div>
                 <div className="box">

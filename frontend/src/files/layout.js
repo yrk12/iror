@@ -8,6 +8,7 @@ import Register from './register';
 import Login from './login';
 import Schedule from "./schedule";
 import Details from './Details';
+import Mybookings from "./mybookings"
 
 import './files.css'
 
@@ -21,6 +22,7 @@ function Layout() {
             <Route path="/register" element={<Register/>} />
             <Route path="/train-schedule" element={<Schedule/>} />
             <Route path="/details" element={<Details/>} />
+            <Route path="/mybookings" element={<Mybookings/>} />
         </Routes>
         <Footer/>
     </Router>
