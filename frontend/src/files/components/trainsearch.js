@@ -33,7 +33,7 @@ function Trainsearch() {
     e.preventDefault();
     console.log(ID);
     try {
-      const response = await fetch("http://localhost:5000/getRoute", {
+      const response = await fetch("http://localhost:5050/getRoute", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ID),

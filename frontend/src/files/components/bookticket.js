@@ -19,7 +19,7 @@ function Bookticket() {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/getTrains", {
+      const response = await fetch("http://localhost:5050/getTrains", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(trainDeatails),
