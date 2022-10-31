@@ -1,9 +1,27 @@
 .trainsearch{
     color: var(--primaryBlue);
+    background-color: var(--bgBlue);
     display: flex;
     flex-direction: column;
-    padding: 0px 100px 0px 100px;
+    padding: 35px 100px 50px 100px;
 }
 
-.flex-child{
+.search-for-flex{
+    padding-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.search-for-flex-child-1{
+    flex: 1;
+    margin: auto;
+}
+
+.search-for-flex-child-3{
+    flex: 3;
+    margin: auto;
+}
+
+.white-button{
+    background-color: #fff;
 }

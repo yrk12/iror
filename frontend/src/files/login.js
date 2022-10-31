@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import trainImg from "./register_img.png";
 import "./files.css";
 
-function Login() {
+function Login(props) {
   const [user, setUser] = useState({
     email: "",
     Password: "",
@@ -37,7 +37,15 @@ function Login() {
         body: JSON.stringify(user),
       });
       let res = await response.json();
-      console.log(res);
+      if(!res.success){
+        alert("Fuck You");
+      }
+      else{
+        sessionStorage.setItem("typeUser", "user");
+        sessionStorage.setItem("userID", "user");
+        alert("Successfully Logged In");
+        window.location.href = "/";
+      }
     } catch (err) {
       console.log(err);
     }
@@ -53,32 +61,34 @@ function Login() {
           <div>
             <h3>Login</h3>
             <br />
-            <TextField
-              sx={{ width: 319 }}
-              required
-              id="outlined-required"
-              name="email"
-              label="Email"
-              value={user.email}
-              onChange={handleChange}
-            />
-            <br />
-            <br />
-            <TextField
-              sx={{ width: 319 }}
-              id="outlined-password-input"
-              required
-              label="Password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              value={user.Password}
-              onChange={handleChange}
-            />
-            <br /> <br />
-            <Button onClick={onSubmitForm} variant="contained">
-              Login
-            </Button>
+            <form onSubmit={onSubmitForm}>
+              <TextField
+                sx={{ width: 319 }}
+                required
+                id="outlined-required"
+                name="email"
+                label="Email"
+                value={user.email}
+                onChange={handleChange}
+              />
+              <br />
+              <br />
+              <TextField
+                sx={{ width: 319 }}
+                id="outlined-password-input"
+                required
+                label="Password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                value={user.Password}
+                onChange={handleChange}
+              />
+              <br /> <br />
+              <Button type="submit" variant="contained">
+                Login
+              </Button>
+            </form>
           </div>
         </div>
       </div>
