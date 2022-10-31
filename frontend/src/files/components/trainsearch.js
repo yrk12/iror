@@ -4,7 +4,7 @@ import "../files.css";
 import "./trainsearch.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Schedule from "../Schedule";
+import Schedule from "../schedule";
 function Trainsearch() {
   const [ID, setID] = useState({
     tID: "",

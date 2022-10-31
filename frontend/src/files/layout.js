@@ -6,7 +6,7 @@ import Footer from './components/footer';
 import Homepage from './homepage';
 import Register from './register';
 import Login from './login';
-import Schedule from "./Schedule";
+import Schedule from "./schedule";
 import Details from './Details';
 import AdminLogin from './adminLogin'
 
