@@ -7,7 +7,7 @@ function Password() {
             <form action="">
                 <label htmlFor="">Old Password</label>
                 <input type="text" name="" id="" /><br />
-                <label htmlFor="">Old Password</label>
+                <label htmlFor="">New Password</label>
                 <input type="text" name="" id="" /><br />
                 <div><button>Change Password</button></div>
             </form>

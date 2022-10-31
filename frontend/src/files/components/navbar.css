@@ -11,12 +11,12 @@
 .navbar_main {
     display: flex;
     background-color: var(--bgBlue);
+    color: var(--primaryBlue);
     padding: 10px 0px;
 }
 
 .iror {
     flex : 1;
-    color: var(--primaryBlue);
     margin: auto;
     padding-left: 100px;
 }

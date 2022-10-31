@@ -122,7 +122,9 @@ app.post("/getTrains", async(req, res) =>{
 
 
 app.post("/getRoute", async(req, res) =>{
-    let details = {};
+    let details = {
+        flag : false
+    };
     try {
         req=req.body;
         req.tID=parseInt(req.tID);   
@@ -156,7 +158,8 @@ app.post("/getRoute", async(req, res) =>{
             startStation: startSt,
             destinationStation: endSt,
             runsOn: train.runson,
-            stations: []
+            stations: [],
+            flag: true
         }
         let h=parseInt((train.starttime).slice(0, 3)), m=parseInt((train.starttime).slice(3,5));
         for(let i=0;i<route.length;i++){

@@ -12,12 +12,15 @@ import Details from './Details';
 import './files.css'
 
 function Layout() {
+  var [isUser, setUser] = React.useState(false);
+  var [isAdmin, setAdmin] = React.useState(false);
+
   return (
     <Router>
-      <Navbar/>
+        <Navbar isUser={isUser} isAdmin={isAdmin}/>
         <Routes>
-            <Route path="/" element={<Homepage/>} />
-            <Route path="/login" element={<Login/>}/>
+            <Route path="/" element={<Homepage/>}/>
+            <Route path="/login" element={<Login setUser={setUser} setAdmin={setAdmin}/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/train-schedule" element={<Schedule/>} />
             <Route path="/details" element={<Details/>} />
