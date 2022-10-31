@@ -37,6 +37,7 @@ function Login(props) {
         body: JSON.stringify(user),
       });
       let res = await response.json();
+      console.log(res);
       if(!res.success){
         alert("Fuck You");
       }
