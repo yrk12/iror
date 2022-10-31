@@ -19,7 +19,7 @@ function Bookticket() {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/getTrains", {
+      const response = await fetch("http://localhost:5050/getTrains", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(trainDeatails),
@@ -70,7 +70,7 @@ function Bookticket() {
   return (
     <div className="bookticket">
       <div className="flex-child">
-        <h1>Book Your Ticket </h1>
+        <h2>Book Your Ticket </h2>
         <form onSubmit={onSubmitForm}>
           <div className="ticket-from-flex">
             <div className="ticket-from-flex-child">
