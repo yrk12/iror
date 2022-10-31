@@ -12,7 +12,7 @@ import './files.css'
 function Layout() {
   return (
     <Router>
-        <Navbar/>
+      <Navbar/>
         <Routes>
             <Route path="/" element={<Homepage/>} />
             <Route path="/login" element={<Login/>}/>

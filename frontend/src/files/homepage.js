@@ -5,7 +5,7 @@ import './files.css'
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import "./files.css";
-import trainImg from "./train_img.jpg";
+import trainImg from "./register_img.png";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -13,7 +13,6 @@ import Button from "@mui/material/Button";
 function Homepage() {
   return (
     <div className="abc">
-      <Navbar />
       <div className="homepage_main">
         <div className="train_query">
           <div className="train_query_input">
@@ -71,7 +70,6 @@ function Homepage() {
           </div>
         </div>  
       </div>
-      <Footer />
     </div>
   );
 }
