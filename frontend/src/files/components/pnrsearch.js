@@ -11,13 +11,19 @@ function Pnrsearch() {
       <div className="flex-child">
         <h2>Find My PNR</h2>
         <form>
-          <TextField required id="outlined-required" label="PNR Enquiry" />
-          <Button type="submit" variant="contained">ENQUIRE</Button>
+          <div className="pnr-for-flex">
+            <div className="pnr-for-flex-child-1">
+              <TextField required id="outlined-required" label="PNR Enquiry" />
+            </div>
+            <div className="pnr-for-flex-child-3">
+              <Button style={{ width: 100 }} type="submit" variant="contained">
+                ENQUIRE
+              </Button>
+            </div>
+          </div>
         </form>
       </div>
-      <div className="flex-child">
-        {/* Map goes here */}
-      </div>
+      <div className="flex-child">{/* Map goes here */}</div>
     </div>
   );
 }
