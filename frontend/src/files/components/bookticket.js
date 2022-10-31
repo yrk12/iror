@@ -70,7 +70,7 @@ function Bookticket() {
   return (
     <div className="bookticket">
       <div className="flex-child">
-        <h1>Book Your Ticket </h1>
+        <h2>Book Your Ticket </h2>
         <form onSubmit={onSubmitForm}>
           <div className="ticket-from-flex">
             <div className="ticket-from-flex-child">
