@@ -55,7 +55,9 @@ function Navbar() {
                 </Button>
               </div>
               <div>My Bookings</div>
-              <div>Change Password</div>
+              <a href="./changepassword">
+              <div >Change Password</div>
+              </a>
             </div>
           </div>
         )}
