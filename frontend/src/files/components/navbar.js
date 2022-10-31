@@ -1,16 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 import "../files.css";
 import "./navbar.css";
 
-function Navbar(props) {
+function Navbar() {
+  let typeUser = sessionStorage.getItem("typeUser");
+
+  function logOut(){
+    sessionStorage.removeItem("typeUser");
+  }
+
   return (
     <>
       <>
-        {props.isUser === false && props.isAdmin === false && (
+        {typeUser === null && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
@@ -35,7 +39,7 @@ function Navbar(props) {
         )}
       </>
       <>
-        {props.isAdmin === false && props.isUser === true && (
+        {typeUser === "user" && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
@@ -46,7 +50,7 @@ function Navbar(props) {
             </div>
             <div className="nav_buttons_C">
               <div>
-                <Button variant="outlined" href="./login">
+                <Button onClick={ logOut } variant="outlined" href="./login">
                   LOGOUT
                 </Button>
               </div>
@@ -57,7 +61,7 @@ function Navbar(props) {
         )}
       </>
       <>
-        {props.isUser === false && props.isAdmin === true && (
+        {typeUser == "admin" && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
