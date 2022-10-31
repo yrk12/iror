@@ -96,3 +96,11 @@ small, .text_small {font-size: 0.8rem;}
 .train_image_homepage {
     flex: 1;
 }
+
+
+.admin_login {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
