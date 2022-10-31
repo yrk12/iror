@@ -54,25 +54,31 @@ function Trainsearch() {
     <div className="trainsearch">
       <div className="flex-child">
         <h2>Search Train</h2>
-        <form>
-          <TextField
-            required
-            id="outlined-required"
-            label="Train Number"
-            onChange={handleChange}
-          />
-          <Button onClick={onSubmitForm} variant="contained">
-            FIND
-          </Button>
+        <form onSubmit={onSubmitForm}>
+          <div className="search-for-flex">
+            <div className="search-for-flex-child-1">
+              <TextField 
+                className="white-button"
+                required
+                id="outlined-required"
+                label="Train Number"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="search-for-flex-child-3">
+              <Button style={{ width: 100 }} type="sumbit" variant="contained">
+                FIND
+              </Button>
+            </div>
+          </div>
         </form>
       </div>
       <div className="flex-child">
-        <div>
-          {flag == false ? (
+          {flag === false ? (
             " "
           ) : (
             <div>
-              {trainSchedule.flag == false ? (
+              {trainSchedule.flag === false ? (
                 <div>"No Result found"</div>
               ) : (
                 <div className="trainSchedule">
@@ -99,7 +105,7 @@ function Trainsearch() {
                           <p>{trainSchedule.runsOn}</p>
                       </div>
                   </div>
-                  <div style={{marginLeft: '100px', marginRight: '100px'}}>
+                  <div>
                       <table className="content">
                           <thead>
                               <tr>
@@ -116,13 +122,12 @@ function Trainsearch() {
                   </div>
               </div>
                 // <div>
-                //   {trainSchedule.stations.map(showSchedule)}
+                //   {trainSchedule.statio  ns.map(showSchedule)}
                 // </div>
               )}
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }
