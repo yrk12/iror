@@ -114,7 +114,7 @@ function Bookticket() {
       </div>
       <div className="flex-child">
         <div>
-          {flag == false ? (
+          {flag === false ? (
             " "
           ) : (
             <div>
