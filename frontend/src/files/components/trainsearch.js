@@ -4,7 +4,7 @@ import "../files.css";
 import "./trainsearch.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Schedule from "../Schedule";
+import Schedule from "../schedule";
 function Trainsearch() {
   const [ID, setID] = useState({
     tID: "",
@@ -33,7 +33,7 @@ function Trainsearch() {
     e.preventDefault();
     console.log(ID);
     try {
-      const response = await fetch("http://localhost:5000/getRoute", {
+      const response = await fetch("http://localhost:5050/getRoute", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ID),

@@ -6,8 +6,9 @@ import Footer from './components/footer';
 import Homepage from './homepage';
 import Register from './register';
 import Login from './login';
-import Schedule from "./Schedule";
+import Schedule from "./schedule";
 import Details from './Details';
+import Mybookings from "./mybookings"
 import AdminLogin from './adminLogin'
 import ChangePassword from './changepassword';
 
@@ -26,6 +27,7 @@ function Layout() {
             <Route path="/register" element={<Register/>} />
             <Route path="/train-schedule" element={<Schedule/>} />
             <Route path="/details" element={<Details/>} />
+            <Route path="/mybookings" element={<Mybookings/>} />
             <Route path="/adminLogin" element={<AdminLogin/>} />
             <Route path='/changepassword' element={<ChangePassword/>} />
         </Routes>

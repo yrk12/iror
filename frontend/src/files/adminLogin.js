@@ -1,23 +1,76 @@
-import React from "react";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
-import './files.css'
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import trainImg from "./register_img.png";
+import "./files.css";
 
-function adminLogin() {
+function AdminLogin(props) {
+  const [user, setUser] = useState({
+    email: "",
+    Password: "",
+  });
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    const inputname = event.target.name;
+    setUser((prevValue) => {
+      if (inputname === "email") {
+        return {
+          email: newValue,
+          Password: prevValue.Password,
+        };
+      } else {
+        return {
+          email: prevValue.email,
+          Password: newValue,
+        };
+      }
+    });
+  }
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5050/adminLogin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+      let res = await response.json();
+      console.log(res);
+      // if(!res.success){
+      //   alert("Fuck You");
+      // }
+      // else{
+      //   sessionStorage.setItem("typeUser", "user");
+      //   sessionStorage.setItem("userID", "user");
+      //   alert("Successfully Logged In");
+      //   window.location.href = "/";
+      // }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <div className="admin_login" >
-        <div>
-        <h3>Admin Login</h3>
+    <div className="login_page">
+      <div className="login_main">
+        <div className="train_image">
+          <img src={trainImg} />
+        </div>
+        <div className="login_input">
+          <div>
+            <h3>Admin Login</h3>
             <br />
-            <form>
+            <form onSubmit={onSubmitForm}>
               <TextField
                 sx={{ width: 319 }}
                 required
                 id="outlined-required"
                 name="email"
                 label="Email"
+                value={user.email}
+                onChange={handleChange}
               />
               <br />
               <br />
@@ -29,17 +82,19 @@ function adminLogin() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                value={user.Password}
+                onChange={handleChange}
               />
               <br /> <br />
               <Button type="submit" variant="contained">
                 Login
               </Button>
             </form>
+          </div>
         </div>
+      </div>
     </div>
   );
 }
 
-export default adminLogin;
-
-
+export default AdminLogin;
