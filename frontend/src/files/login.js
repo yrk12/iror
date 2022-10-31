@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import trainImg from "./register_img.png";
 import "./files.css";
-import { useSlotProps } from "@mui/base";
 
 function Login(props) {
   const [user, setUser] = useState({
@@ -42,8 +41,10 @@ function Login(props) {
         alert("Fuck You");
       }
       else{
-        props.setUser(true);
-        console.log(res.success);
+        sessionStorage.setItem("typeUser", "user");
+        sessionStorage.setItem("userID", "user");
+        alert("Successfully Logged In");
+        window.location.href = "/";
       }
     } catch (err) {
       console.log(err);
