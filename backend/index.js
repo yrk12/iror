@@ -47,13 +47,44 @@ app.post("/login", async(req, res) =>{
             "SELECT * FROM USERS WHERE EMAIL=$1",
             [req.email]
         );
-        User=User.rows;
+        User=User.rows[0];
         if(User.length == 0){
             res.json({success: false});
         }
         else{
-            if(User[0].password == req.Password){
-                res.json({success: true});
+            if(User.password == req.Password){
+                let obj={success: true,
+                    userId: User.userid
+                }
+                res.json(obj);
+            }
+            else{
+                res.json({success: false});
+            }
+        }
+    } catch (err) {
+        res.json({success: false});
+    }
+});
+
+app.post("/adminLogin", async(req, res) =>{
+    try {
+        req=req.body;
+        console.log(req);   
+        let User = await pool.query(
+            "SELECT * FROM ADMINS WHERE ADMINEMAIL=$1",
+            [req.email]
+        );
+        User=User.rows[0];
+        if(User.length == 0){
+            res.json({success: false});
+        }
+        else{
+            if(User.password == req.Password){
+                let obj={success: true,
+                    adminId: User.adminid
+                }
+                res.json(obj);
             }
             else{
                 res.json({success: false});
@@ -183,6 +214,47 @@ app.post("/getRoute", async(req, res) =>{
         res.json(details);
     }
 });
+
+
+app.post("/deleteTrain", async(req, res) =>{
+    try {
+        trainId=9;  
+        const newUser = await pool.query(
+            "DELETE FROM TRAINS WHERE TRAINID=$1;",
+            [trainId]
+        );
+        res.json({created: true});  
+    } catch (err) {
+        res.json({created: false});
+    }
+});
+
+app.post("/deleteTicket", async(req, res) =>{
+    try {
+        ticketId=5;  
+        const newUser = await pool.query(
+            "DELETE FROM TICKETS WHERE TICKETID=$1;",
+            [ticketId]
+        );
+        res.json({created: true});
+    } catch (err) {
+        res.json({created: false});
+    }
+});
+
+app.post("/getBookings", async(req, res) =>{
+    let uId=1;
+    try {  
+        const tickets = await pool.query(
+            "SELECT * FROM TICKETS WHERE USERID=$1",
+            [uId]
+        );
+        res.json({created: true});
+    } catch (err) {
+        res.json({created: false});
+    }
+});
+
 
 app.listen(5000, () => {
     console.log("server has started on port 5000");
