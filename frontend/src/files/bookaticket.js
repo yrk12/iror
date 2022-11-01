@@ -41,8 +41,6 @@ function Bookaticket() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(formFields);
-    console.log(contactInfo);
     let userId = sessionStorage.getItem("userID");
     let formData = {
       passengers: formFields,
@@ -50,7 +48,6 @@ function Bookaticket() {
       contactno: contactInfo.contact,
       userId: userId,
     }
-    console.log(formData);
   };
 
   const addFields = () => {
