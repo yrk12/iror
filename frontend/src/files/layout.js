@@ -14,7 +14,8 @@ import ChangePassword from './changepassword';
 import Bookaticket from './bookaticket';
 import AllRoutes from './allRoutes';
 import AllTrains from './allTrains';
-import AllBookings from './allBookings'
+import AllBookings from './allBookings';
+import Addtrain from './addtrain';
 
 import './files.css'
 
@@ -38,6 +39,7 @@ function Layout() {
             <Route path='/allRoutes' element={<AllRoutes/>} />
             <Route path='/allTrains' element={<AllTrains/>} />
             <Route path='/allBookings' element={<AllBookings/>} />
+            <Route path='/addTrain' element={<Addtrain/>} />
         </Routes>
         <Footer/>
     </Router>
