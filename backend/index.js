@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const pool = require("./connect");
 const { response } = require("express");
+const schedule = require('node-schedule');
+
 app.use(cors());
 app.use(express.json());
 
@@ -198,22 +200,25 @@ app.post("/getRoute", async(req, res) =>{
             "SELECT CURRENTSTATION FROM ROUTES WHERE TRAINID=$1 AND TIMEFROMSTART IN (SELECT MIN(TIMEFROMSTART) FROM ROUTES);",
             [req.tID]
         );
+        console.log(startSt);
         startSt=startSt.rows[0].currentstation;
+        console.log(startSt);
         let endSt = await pool.query(
             "SELECT CURRENTSTATION FROM ROUTES WHERE TRAINID=$1 AND TIMEFROMSTART IN (SELECT MAX(TIMEFROMSTART) FROM ROUTES);",
             [req.tID]
         );
         endSt=endSt.rows[0].currentstation;
+        console.log(endSt);
         let train = await pool.query(
             "SELECT * FROM TRAINS WHERE TRAINID=$1;",
             [req.tID]
         );
         train=train.rows[0];
         route=route.rows;
-        // console.log(route);
-        // console.log(train);
-        // console.log(startSt);
-        // console.log(endSt);
+        console.log(route);
+        console.log(train);
+        console.log(startSt);
+        console.log(endSt);
         details = {
             trainId: req.tID,
             trainName: train.trainname,
@@ -240,8 +245,10 @@ app.post("/getRoute", async(req, res) =>{
                 departureTime: departureTime
             })
         }
+        console.log(details);
         res.json(details);
     } catch (err) {
+        console.log(err);
         res.json(details);
     }
 });
