@@ -11,13 +11,10 @@ import Details from './Details';
 import Mybookings from "./mybookings"
 import AdminLogin from './adminLogin'
 import ChangePassword from './changepassword';
-<<<<<<< HEAD
 import Bookaticket from './bookaticket';
-=======
 import AllRoutes from './allRoutes';
 import AllTrains from './allTrains';
 import AllBookings from './allBookings'
->>>>>>> 7048ea2b70b4ff27d2ea217c356d47cd796d627e
 
 import './files.css'
 
