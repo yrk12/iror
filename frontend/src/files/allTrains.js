@@ -3,11 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./files.css";
 import { useState } from "react";
 
-
-
-
-
-
 export default function AllTrain() {
     const columns = [
         { field: "id", headerName: "Train ID", type: "number", width: 100 },
@@ -32,8 +27,6 @@ export default function AllTrain() {
       ];
 
     const [rows, setRows] = useState([]);
-
-    let rws = [];
 
     const getAllTrains = async () => {
         try {
