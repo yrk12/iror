@@ -1,7 +1,6 @@
 import React from "react";
 import "./tickets.css";
 import Button from "@mui/material/Button";
-import { requirePropFactory } from "@mui/material";
 
 function Tickets(props) {
     props=props.props;

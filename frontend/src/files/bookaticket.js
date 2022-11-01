@@ -41,8 +41,6 @@ function Bookaticket() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(formFields);
-    console.log(contactInfo);
     let userId = sessionStorage.getItem("userID");
     let formData = {
       passengers: formFields,
@@ -50,7 +48,6 @@ function Bookaticket() {
       contactno: contactInfo.contact,
       userId: userId,
     }
-    console.log(formData);
   };
 
   const addFields = () => {
@@ -73,7 +70,7 @@ function Bookaticket() {
     <div className="bookaticket">
       <h2>Passenger Details</h2>
       <div>
-        <form>
+        <form onSubmit={ submitForm }>
           <div className="repeat-passenger-container">
             {formFields.map((form, index) => {
               return (
@@ -119,6 +116,7 @@ function Bookaticket() {
                       <Button
                         color="warning"
                         variant="contained"
+                        required
                         onClick={() => removeFields(index)}
                       >
                         Remove Passenger
@@ -166,7 +164,6 @@ function Bookaticket() {
             sx={{ backgroundColor: "#4CAF50" }}
             type="submit"
             variant="contained"
-            onClick={submitForm}
           >
             Pay and Book Ticket
           </Button>
