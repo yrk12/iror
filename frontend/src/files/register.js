@@ -75,10 +75,9 @@ function Register() {
         let res=await response.json();
         console.log(res);
         if(res.created){
-          alert("Success");
           window.location.href = "/login";
         }else{
-          alert("Invalid Credential");
+          alert("Invalid Credential. Please Try Again.");
         }
       }
       catch (err){

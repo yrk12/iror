@@ -3,8 +3,26 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import trainImg from "./register_img.png";
 import "./files.css";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Login(props) {
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   const [user, setUser] = useState({
     email: "",
     Password: "",
@@ -38,13 +56,14 @@ function Login(props) {
       });
       let res = await response.json();
       console.log(res);
-      if(!res.success){
-        alert("Login Failed");
-      }
-      else{
+      if (!res.success) {
+        handleClick({
+          vertical: 'bottom',
+          horizontal: 'right',
+        });
+      } else {
         sessionStorage.setItem("typeUser", "user");
         sessionStorage.setItem("userID", res.userId);
-        alert("Successfully Logged In");
         window.location.href = "/";
       }
     } catch (err) {
@@ -56,7 +75,7 @@ function Login(props) {
     <div className="login_page">
       <div className="login_main">
         <div className="train_image">
-          <img src={trainImg} alt="Train"/>
+          <img src={trainImg} alt="Train" />
         </div>
         <div className="login_input">
           <div>
@@ -92,6 +111,15 @@ function Login(props) {
             </form>
           </div>
         </div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Login Failed! Try Again.
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );

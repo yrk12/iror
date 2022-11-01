@@ -6,6 +6,11 @@
     padding: 35px 100px 50px 100px;
 }
 
+.margin-10-10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .search-for-flex{
     padding-top: 40px;
     display: flex;
@@ -23,5 +28,9 @@
 }
 
 .white-button{
+    background-color: #fff;
+}
+
+.content{
     background-color: #fff;
 }

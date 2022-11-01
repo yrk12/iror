@@ -79,6 +79,7 @@ function Bookticket() {
                 label="Departure"
                 type="search"
                 name="departure"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -88,6 +89,7 @@ function Bookticket() {
                 label="Arrival"
                 type="search"
                 name="arrival"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -118,12 +120,12 @@ function Bookticket() {
             " "
           ) : (
             <div>
-              <h3>{trainResult.length} Results</h3>
-              <div>
+              <h3 className="margin-10-10">{trainResult.length} Results</h3>
+              <div className="margin-10-10">
                 {trainResult.length === 0 ? (
                   " "
                 ) : (
-                  <div>
+                  <div className="margin-10-10">
                     <div className="information">
                       <div className="data">
                         <h3>Train Name</h3>

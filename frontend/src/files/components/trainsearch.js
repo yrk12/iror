@@ -73,17 +73,17 @@ function Trainsearch() {
           </div>
         </form>
       </div>
-      <div className="flex-child">
+      <div className="flex-child margin-10-10">
           {flag === false ? (
             " "
           ) : (
             <div>
               {trainSchedule.flag === false ? (
-                <div>"No Result found"</div>
+                <div className="margin-10-10">"No Result found"</div>
               ) : (
-                <div className="trainSchedule">
+                <div className="trainSchedule margin-10-10">
                   <span className="H1"><h1>Train Schedule</h1></span>
-                  <div className="info">
+                  <div className="info margin-10-10">
                       <div>
                           <h3>Train Number</h3>
                           <p>{trainSchedule.trainId}</p>
@@ -105,7 +105,7 @@ function Trainsearch() {
                           <p>{trainSchedule.runsOn}</p>
                       </div>
                   </div>
-                  <div>
+                  <div className="margin-10-10">
                       <table className="content">
                           <thead>
                               <tr>
