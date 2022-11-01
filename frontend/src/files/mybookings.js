@@ -36,7 +36,7 @@ function Mybookings () {
         <div className="mybookings">
             <div className="mybookings-child"><h1>Your Bookings</h1></div>
             <div>
-                { bookings.lenght==0 ? " " : <div>
+                { bookings.lenght===0 ? " " : <div>
                     <div className="information">
                       <div className="data">
                         <h3>Train Name</h3>
