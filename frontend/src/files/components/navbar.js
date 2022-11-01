@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <>
       <>
-        {typeUser === "" && (
+        {(typeUser === null || typeUser === "") && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
@@ -65,7 +65,7 @@ function Navbar() {
         )}
       </>
       <>
-        {typeUser == "admin" && (
+        {typeUser === "admin" && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
