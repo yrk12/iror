@@ -67,6 +67,22 @@ app.post("/login", async(req, res) =>{
     }
 });
 
+app.post("/allTrains", async(req, res) =>{
+    try {
+        req=req.body;
+        console.log(req);   
+        let allTrainsData = await pool.query(
+            "SELECT * FROM Trains;"
+        );
+            //console.log(allTrainsData.rows);
+        allTrainsData = allTrainsData.rows;
+            //console.log(allTrainsData); 
+            res.json({allTrainsData})
+    } catch (err) {
+        res.json({success: false});
+    }
+});
+
 app.post("/changePasswords", async(req, res) =>{
     try {
         req=req.body;

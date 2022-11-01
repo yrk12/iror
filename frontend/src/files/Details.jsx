@@ -8,7 +8,7 @@ function Details(props) {
 
     return (
         <div className="trainDetails">
-            
+
             <div>
                 <div className="information"> 
                     <div className="box">
