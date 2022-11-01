@@ -12,7 +12,6 @@ import Mybookings from "./mybookings"
 import AdminLogin from './adminLogin'
 import ChangePassword from './changepassword';
 import Bookaticket from './bookaticket';
-import AllRoutes from './allRoutes';
 import AllTrains from './allTrains';
 import AllBookings from './allBookings';
 import Addtrain from './addtrain';

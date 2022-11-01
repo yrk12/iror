@@ -122,3 +122,8 @@ small, .text_small {font-size: 0.8rem;}
     height: 400;
     width: "100%"
 }
+
+.datagrid-containter{
+    margin: 60px 100px 80px 100px;
+    color: var(--primaryBlue);
+}

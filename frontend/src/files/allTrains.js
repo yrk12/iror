@@ -58,11 +58,11 @@ export default function AllTrain() {
         getAllTrains();
     }, []);
   return (
-    <div>
+    <div className="datagrid-containter">
       <br />
-      <h3>All Trains</h3>
+      <h1>All Trains</h1>
       <br />
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 700, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}

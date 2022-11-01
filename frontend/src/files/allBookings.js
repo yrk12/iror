@@ -3,10 +3,6 @@ import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import './files.css'
 
-
-
-
-
 export default function AllTrain() {
   const columns = [
     { field: "trainid", headerName: "Train ID", width: 100 },
@@ -62,11 +58,11 @@ export default function AllTrain() {
     getAllBookings();
   }, [] );
   return (
-    <div>
+    <div className="datagrid-containter">
         <br/>
-        <h3>All Bookings</h3>
+        <h1>All Bookings</h1>
         <br/>
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 700, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
