@@ -8,13 +8,15 @@ function Navbar() {
   let typeUser = sessionStorage.getItem("typeUser");
 
   function logOut(){
-    sessionStorage.removeItem("typeUser");
+    sessionStorage.setItem("typeUser","");
+    sessionStorage.removeItem("userID");
+    window.location.href = "/";
   }
 
   return (
     <>
       <>
-        {typeUser === null && (
+        {(typeUser === null || typeUser === "") && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
@@ -50,7 +52,7 @@ function Navbar() {
             </div>
             <div className="nav_buttons_C">
               <div>
-                <Button onClick={ logOut } variant="outlined" href="./login">
+                <Button onClick={ logOut } variant="outlined">
                   LOGOUT
                 </Button>
               </div>
@@ -63,7 +65,7 @@ function Navbar() {
         )}
       </>
       <>
-        {typeUser == "admin" && (
+        {typeUser === "admin" && (
           <div className="navbar_main">
             <div className="iror">
               <h3>
@@ -74,7 +76,7 @@ function Navbar() {
             </div>
             <div className="nav_buttons_C">
               <div>
-                <Button variant="outlined" href="./login">
+                <Button onClick={ logOut } variant="outlined">
                   LOGOUT
                 </Button>
               </div>

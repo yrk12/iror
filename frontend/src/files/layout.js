@@ -11,9 +11,13 @@ import Details from './Details';
 import Mybookings from "./mybookings"
 import AdminLogin from './adminLogin'
 import ChangePassword from './changepassword';
+<<<<<<< HEAD
+import Bookaticket from './bookaticket';
+=======
 import AllRoutes from './allRoutes';
 import AllTrains from './allTrains';
 import AllBookings from './allBookings'
+>>>>>>> 7048ea2b70b4ff27d2ea217c356d47cd796d627e
 
 import './files.css'
 
@@ -33,6 +37,7 @@ function Layout() {
             <Route path="/mybookings" element={<Mybookings/>} />
             <Route path="/adminLogin" element={<AdminLogin/>} />
             <Route path='/changepassword' element={<ChangePassword/>} />
+            <Route path='/pd' element={<Bookaticket/>} />
             <Route path='/allRoutes' element={<AllRoutes/>} />
             <Route path='/allTrains' element={<AllTrains/>} />
             <Route path='/allBookings' element={<AllBookings/>} />
