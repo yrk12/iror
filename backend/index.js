@@ -67,6 +67,37 @@ app.post("/login", async(req, res) =>{
     }
 });
 
+app.post("/changePasswords", async(req, res) =>{
+    try {
+        req=req.body;
+        console.log(req);   
+        let User = await pool.query(
+            "SELECT Password FROM USERS WHERE USERID=$1",
+            [req.userId]
+        );
+        User=User.rows[0];
+        console.log(User);
+        if(User.length == 0){
+            res.json({success: false});
+        }
+        else{
+            if(User.password == req.oldPassword){
+                let change = await pool.query(
+                    "UPDATE USERS SET PASSWORD = $1 WHERE USERID = $2",
+                    [req.newPassword, req.userId]
+                );
+                res.json({success: true});
+            }
+            else{
+                res.json({success: false});
+            }
+        }
+    } catch (err) {
+        console.log(err);
+        res.json({success: false});
+    }
+});
+
 app.post("/adminLogin", async(req, res) =>{
     try {
         req=req.body;
