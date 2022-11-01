@@ -243,15 +243,59 @@ app.post("/deleteTicket", async(req, res) =>{
 });
 
 app.post("/getBookings", async(req, res) =>{
-    let uId=1;
+    req=req.body;
+    console.log(req);
+    let obj = [];
     try {  
-        const tickets = await pool.query(
+        let tickets = await pool.query(
             "SELECT * FROM TICKETS WHERE USERID=$1",
-            [uId]
+            [req.id]
         );
-        res.json({created: true});
+        tickets=tickets.rows;
+        console.log(tickets);
+        for(let i=0;i<tickets.length;i++){
+            let train = await pool.query(
+                "SELECT TRAINNAME, RUNSON, STARTTIME  FROM TRAINS WHERE TRAINID=$1",
+                [tickets[i].trainid]
+            );
+            train=train.rows[0];   
+            console.log(train);
+            let stationDetails = await pool.query(
+                "SELECT to_char(DEPARTURE.CURRENTDATE, 'YYYY-MM-DD') AS DEPARTUREDATE, to_char(ARRIVAL.CURRENTDATE, 'YYYY-MM-DD') AS ARRIVALDATE, ARRIVAL.TIMEFROMSTART-DEPARTURE.TIMEFROMSTART AS DURATION, ARRIVAL.TIMEFROMSTART AS ARRIVALTIME, DEPARTURE.TIMEFROMSTART AS DEPARTURETIME FROM ROUTES AS DEPARTURE INNER JOIN ROUTES AS ARRIVAL ON (DEPARTURE.ROUTEID=ARRIVAL.ROUTEID AND DEPARTURE.TRAINID=ARRIVAL.TRAINID) WHERE DEPARTURE.CURRENTSTATION=$1 AND ARRIVAL.CURRENTSTATION=$2 AND ARRIVAL.ROUTEID=$3",
+                [tickets[i].sourcestation, tickets[i].destinationstation, tickets[i].routeid]
+            );
+            //console.log(stationDetails.rows);
+            stationDetails = stationDetails.rows[0];
+            let h=parseInt((train.starttime).slice(0, 3)), m=parseInt((train.starttime).slice(3,5));
+            let dh=(h+Math.floor(stationDetails.departuretime/60))%24, dm=(m+stationDetails.departuretime%60)%60;
+            dh+=Math.floor((m+stationDetails.departuretime%60)/60);
+            let departureTime = getTime(dh, dm);
+            dh=(h+Math.floor(stationDetails.arrivaltime/60))%24;
+            dm=(m+stationDetails.arrivaltime%60)%60;
+            let arrivalTime = getTime(dh, dm);
+            
+            obj.push({
+                trainName: train.trainname,
+                trainId: tickets[i].trainid,
+                noOfPassengers: tickets[i].noofpassenger,
+                departureStation: tickets[i].sourcestation,
+                departureTime: departureTime,
+                departureDate: stationDetails.departuredate,
+                durationHours: Math.floor(stationDetails.duration/60),
+                durationMinutes: stationDetails.duration%60,
+                runsOn: train.runson,
+                arrivalStation: tickets[i].destinationstation,
+                arrivalTime: arrivalTime,
+                arrivalDate: stationDetails.arrivaldate
+            })
+
+        }
+        console.log(obj);
+        // trainName=trainName.rows;
+        // console.log(tickets);
+        res.json(obj);
     } catch (err) {
-        res.json({created: false});
+        res.json(obj);
     }
 });
 
