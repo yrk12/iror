@@ -39,7 +39,7 @@ function Trainsearch() {
         body: JSON.stringify(ID),
       });
       let res = await response.json();
-      console.log(res);
+      //console.log(res);
       setTrainSchedule((prevValue) => {
         return res;
       });

@@ -83,6 +83,24 @@ app.post("/allTrains", async(req, res) =>{
     }
 });
 
+
+app.post("/allBookings", async(req, res) =>{
+    try {
+        req=req.body;
+        console.log(req);   
+        let allBookingsData = await pool.query(
+            "SELECT * FROM Tickets;"
+        );
+            //console.log(allTrainsData.rows);
+        allBookingsData = allBookingsData.rows;
+            console.log(allBookingsData ); 
+            res.json({allBookingsData})
+    } catch (err) {
+        res.json({success: false});
+    }
+});
+
+
 app.post("/changePasswords", async(req, res) =>{
     try {
         req=req.body;

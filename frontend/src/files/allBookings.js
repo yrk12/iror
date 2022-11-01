@@ -1,42 +1,66 @@
 import * as React from "react";
+import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import './files.css'
 
-const columns = [
-  { field: "id", headerName: "Train ID", width: 100 },
-  { field: "source", headerName: "Source", width: 150 },
-  {
-    field: "destination",
-    headerName: "Destination",
-    width: 130,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    type: "number",
-    width: 130,
-  },
-  {
-    field: "no_of_passengers",
-    headerName: "No of Passengers",
-    type: "number",
-    width: 180,
-  },
-];
 
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+
+
 
 export default function AllTrain() {
+  const columns = [
+    { field: "trainid", headerName: "Train ID", width: 100 },
+    { field: "sourcestation", headerName: "Source", width: 150 },
+    {
+      field: "destinationstation",
+      headerName: "Destination",
+      width: 130,
+    },
+    {
+      field: "price",
+      headerName: "Price",
+      type: "number",
+      width: 130,
+    },
+    {
+      field: "noofpassenger",
+      headerName: "No of Passengers",
+      type: "number",
+      width: 180,
+    },
+  ];
+
+  const [rows, setRows] = useState([]);
+
+  const getAllBookings = async () => {
+    try {
+        const response = await fetch("http://localhost:5050/allBookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }, 
+        });
+        //console.log(response);
+        const res = await response.json();
+        //console.log(res);
+        for(var i = 0; i < res.allBookingsData.length; i++){
+          res.allBookingsData[i]["id"] = res.allBookingsData[i].trainid ;
+        }
+        //console.log(response.allTrainsData);
+        //const res = await response.json();
+        console.log(res);
+        setRows(res.allBookingsData);
+        // rws = res;
+        // const a = res.allTrainsData;
+        // console.log(typeof(a.allTrainsData));
+        // console.log((res.allTrainsData));
+        // setRows(res.allTrainsData);
+        
+      } catch (err) {
+        console.log(err);
+      }
+}
+  React.useEffect(() => {
+    getAllBookings();
+  }, [] );
   return (
     <div>
         <br/>
