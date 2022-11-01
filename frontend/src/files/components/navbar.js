@@ -7,8 +7,8 @@ import "./navbar.css";
 function Navbar() {
   let typeUser = sessionStorage.getItem("typeUser");
 
-  function logOut(){
-    sessionStorage.setItem("typeUser","");
+  function logOut() {
+    sessionStorage.setItem("typeUser", "");
     sessionStorage.removeItem("userID");
     window.location.href = "/";
   }
@@ -20,7 +20,11 @@ function Navbar() {
           <div className="navbar_main">
             <div className="iror">
               <h3>
-                <a href="/" style={{ textDecoration: "none" }}>
+                <a
+                  href="/"
+                  className="a-link"
+                  style={{ textDecoration: "none" }}
+                >
                   IROR
                 </a>
               </h3>
@@ -45,20 +49,34 @@ function Navbar() {
           <div className="navbar_main">
             <div className="iror">
               <h3>
-                <a href="/" style={{ textDecoration: "none" }}>
+                <a
+                  href="/"
+                  className="a-link"
+                  style={{ textDecoration: "none" }}
+                >
                   IROR
                 </a>
               </h3>
             </div>
             <div className="nav_buttons_C">
               <div>
-                <Button onClick={ logOut } variant="outlined">
+                <Button onClick={logOut} variant="outlined">
                   LOGOUT
                 </Button>
               </div>
-              <div>My Bookings</div>
-              <a href="./changepassword">
-              <div >Change Password</div>
+              <a
+                href="./mybookings"
+                className="a-link margin-auto"
+                style={{ textDecoration: "none" }}
+              >
+                <div>My Bookings</div>
+              </a>
+              <a
+                href="./changepassword"
+                className="a-link margin-auto"
+                style={{ textDecoration: "none" }}
+              >
+                <div>Change Password</div>
               </a>
             </div>
           </div>
@@ -69,19 +87,33 @@ function Navbar() {
           <div className="navbar_main">
             <div className="iror">
               <h3>
-                <a href="/" style={{ textDecoration: "none" }}>
+                <a
+                  href="/"
+                  className="a-link"
+                  style={{ textDecoration: "none" }}
+                >
                   IROR
                 </a>
               </h3>
             </div>
             <div className="nav_buttons_C">
               <div>
-                <Button onClick={ logOut } variant="outlined">
+                <Button onClick={logOut} variant="outlined">
                   LOGOUT
                 </Button>
               </div>
-              <div>View Bookings</div>
-              <div>Add Train</div>
+              <a href="/allBookings" className="a-link margin-auto" style={{ textDecoration: "none" }}>
+                <div>View All Bookings</div>
+              </a>
+              <a href="/allTrains" className="a-link margin-auto" style={{ textDecoration: "none" }}>
+                <div>View All Trains</div>
+              </a>
+              <a href="/" className="a-link margin-auto" style={{ textDecoration: "none" }}>
+                <div>Delete Train</div>
+              </a>
+              <a href="/addTrain" className="a-link margin-auto" style={{ textDecoration: "none" }}>
+                <div>Add Train</div>
+              </a>
             </div>
           </div>
         )}
