@@ -112,3 +112,13 @@ small, .text_small {font-size: 0.8rem;}
     padding-top: 80px;
     padding-bottom: 80px;
 }
+
+.all_routes {
+    display: flex;
+    justify-content: center;
+}
+
+.all_routes_table {
+    height: 400;
+    width: "100%"
+}

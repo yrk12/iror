@@ -90,7 +90,7 @@ function Register() {
         <div className="login_page">
         <div className="login_main">
         <div className="train_image">
-          <img src={trainImg}/>
+          <img src={trainImg} alt="Train"/>
         </div>
         <div className="login_input">
           <div>

@@ -8,7 +8,7 @@ function Details(props) {
 
     return (
         <div className="trainDetails">
-            
+
             <div>
                 <div className="information"> 
                     <div className="box">
@@ -16,7 +16,7 @@ function Details(props) {
                         <h3>{props.trainid}</h3>
                         <h4 style={{color: '#4CAF50'}}>{props.remainingSeats} Left</h4>
                         <div style={{display: 'flex'}}>
-                            <button>Book Now</button>
+                            <button className="Dbutton">Book Now</button>
                             <h4 style={{color: '#03A9F4'}}>₹{props.price}</h4>
                         </div>
                     </div>

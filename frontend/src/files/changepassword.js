@@ -83,7 +83,7 @@ function ChangePassword() {
               />
               <br /> <br />
               <Button type="submit" variant="contained">
-                CHANGE PASSOWORD
+                CHANGE PASSWORD
               </Button>
             </form>
         </div>

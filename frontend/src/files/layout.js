@@ -11,6 +11,11 @@ import Details from './Details';
 import Mybookings from "./mybookings"
 import AdminLogin from './adminLogin'
 import ChangePassword from './changepassword';
+import Bookaticket from './bookaticket';
+import AllRoutes from './allRoutes';
+import AllTrains from './allTrains';
+import AllBookings from './allBookings';
+import Addtrain from './addtrain';
 
 import './files.css'
 
@@ -30,6 +35,11 @@ function Layout() {
             <Route path="/mybookings" element={<Mybookings/>} />
             <Route path="/adminLogin" element={<AdminLogin/>} />
             <Route path='/changepassword' element={<ChangePassword/>} />
+            <Route path='/pd' element={<Bookaticket/>} />
+            <Route path='/allRoutes' element={<AllRoutes/>} />
+            <Route path='/allTrains' element={<AllTrains/>} />
+            <Route path='/allBookings' element={<AllBookings/>} />
+            <Route path='/addTrain' element={<Addtrain/>} />
         </Routes>
         <Footer/>
     </Router>
