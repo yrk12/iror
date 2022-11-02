@@ -8,8 +8,30 @@ const schedule = require('node-schedule');
 app.use(cors());
 app.use(express.json());
 
-const pricePerMinute=2;
+const weekday={
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6
+};
 
+function getNextDay(date = new Date(), day) {
+    const dateCopy = new Date(date.getTime());
+  
+    const next = new Date(
+      dateCopy.setDate(
+        dateCopy.getDate() + ((7 - dateCopy.getDay() + day) % 7 || 7),
+      ),
+    );
+  
+    return next;
+  }
+
+
+const pricePerMinute=2;
 function getTime(dh, dm){
     let time="";
     if(dh<10){
@@ -194,7 +216,7 @@ app.post("/getTrains", async(req, res) =>{
             dm=(m+trains[i].arrivaltime%60)%60;
             let arrivalTime = getTime(dh, dm);
             trainDetails.push({
-                trainid: trains[i].trainid,
+                trainid: parseInt(trains[i].trainid),
                 departure: trains[i].dept,
                 arrival: trains[i].arr,
                 departureDate: trains[i].departuredate,
@@ -206,7 +228,8 @@ app.post("/getTrains", async(req, res) =>{
                 runsOn: currentTrain.runson,
                 remainingSeats: remainingSeats.min,
                 arrivalTime: arrivalTime,
-                departureTime: departureTime
+                departureTime: departureTime,
+                routeId: parseInt(trains[i].routeid)
             })
         }
         console.log(trainDetails);
@@ -371,6 +394,94 @@ app.post("/getBookings", async(req, res) =>{
     }
 });
 
+app.post("/bookTicket", async(req, res) =>{
+    try {
+        req=req.body;
+        console.log(req.passengers);  
+        const newTicket = await pool.query(
+            "INSERT INTO Tickets (UserID, RouteID, TrainID, SourceStation, DestinationStation, Price, Email, ContactNo, NoOfPassenger) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) returning TicketId;",
+            [req.userId, req.routeId, req.trainId, req.sourceStation, req.destinationStation, req.price , req.email, req.contactno, req.passengers.length]
+        );
+        console.log(newTicket.rows[0]);
+        let ticketId=parseInt(newTicket.rows[0].ticketid);
+        console.log(ticketId);
+        for(let i=0;i<req.passengers.length;i++){
+            const newPassenger = await pool.query(
+                "INSERT INTO Passengers (TicketID, Name, Age, Gender) VALUES($1, $2, $3, $4);",
+                [ticketId, req.passengers[i].name, req.passengers[i].age, req.passengers[i].gender]
+            );
+        }
+        
+        const updateRemainingSeats = await pool.query(
+            "UPDATE Routes SET RemainingSeats = (RemainingSeats - $1) WHERE TimefromStart >= (SELECT TimefromStart FROM Routes WHERE CurrentStation = $2 AND RouteID = $4 AND TrainID = $5) AND TimefromStart < (SELECT TimefromStart FROM Routes WHERE CurrentStation = $3 AND RouteID = $4 AND TrainID = $5) AND RouteID = $4 AND TrainID = $5;",
+            [req.passengers.length, req.sourceStation, req.destinationStation, req.routeId, req.trainId]
+        );
+        
+        res.json({created: true});
+    } catch (err) {
+        res.json({created: false});
+        console.log(err);
+    }
+});
+
+
+app.post("/addTrain", async(req, res) =>{
+    req=req.body;
+    console.log(req.runson);
+    console.log(weekday[req.runson]);
+    let d1=getNextDay(new Date(), weekday[req.runson]), d2=getNextDay(d1, weekday[req.runson]);
+    let date="";
+    date=date+d1.getFullYear()+':';
+    if(d1.getMonth<10){
+        date+='0';
+    }
+    date+=d1.getMonth()+':';
+    if(d1.getDay){
+        date+='0';
+    }
+    let date2="";
+    date2=date2+d2.getFullYear()+':';
+    if(d2.getMonth<10){
+        date2+='0';
+    }
+    date2+=d2.getMonth()+':';
+    if(d2.getDay){
+        date2+='0';
+    }
+    date2+=d2.getDate();
+    console.log(date2);
+    try {
+        console.log(req);
+        let maxRouteId = await pool.query(
+            "SELECT MAX(ROUTEID) FROM ROUTES;",
+            []
+        );
+        maxRouteId=maxRouteId.rows[0];
+        console.log(maxRouteId);
+        let newTrain = await pool.query(
+            "INSERT INTO Trains (TrainName, RunsOn, TotalSeats, StartTime) VALUES($1, $2, $3, $4) returning TrainID;",
+            [req.trainName, req.runson, req.totalseats, req.starttime]
+        );
+        newTrain=newTrain.rows[0];
+        for(let i=0;i<req.routes.length;i++){
+            const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, RouteID) VALUES($1, $2, $3, $4, $5, $6);",
+                [newTrain.trainid, req.routes[i].station, req.totalseats, req.routes[i].timeFromStart, d1, maxRouteId.max+1]
+            );
+        }
+        for(let i=0;i<req.routes.length;i++){
+            const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, routeID) VALUES($1, $2, $3, $4, $5, $6);",
+                [newTrain.trainid, req.routes[i].station, req.totalseats, req.routes[i].timeFromStart, d2, maxRouteId.max+2]
+            );
+        }
+        
+        
+        res.json({success: true});
+    } catch (err) {
+        console.log(err);
+        res.json({success: false});
+    }
+
+});
 
 app.listen(5050, () => {
     console.log("server has started on port 5050");

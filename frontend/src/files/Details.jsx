@@ -1,10 +1,24 @@
 import React from "react";
 import "./Details.css";
-
+import { Navigate, Link } from "react-router-dom";
+import {createSearchParams , useNavigate} from "react-router-dom";
 function Details(props) {
     props=props.props;
-
     const months={"01": "Jan","02": "Feb","03": "Mar","04": "Apr","05": "May","06": "Jun","07": "Jul","08": "Aug","09": "Sep","10": "Oct","11": "Nov","12": "Dec"};
+    const navigate=useNavigate();
+    const bookTicket = (id) => {
+        navigate({
+            pathname: "/pd",
+            search: createSearchParams({
+                id : props.trainid,
+                remainingSeats: props.remainingSeats,
+                departure: props.departure,
+                arrival: props.arrival,
+                routeId: props.routeId,
+                price: props.price
+            }).toString()
+        });
+    };
 
     return (
         <div className="trainDetails">
@@ -16,7 +30,7 @@ function Details(props) {
                         <h3>{props.trainid}</h3>
                         <h4 style={{color: '#4CAF50'}}>{props.remainingSeats} Left</h4>
                         <div style={{display: 'flex'}}>
-                            <button className="Dbutton">Book Now</button>
+                            <button onClick={bookTicket}>Book</button>
                             <h4 style={{color: '#03A9F4'}}>₹{props.price}</h4>
                         </div>
                     </div>

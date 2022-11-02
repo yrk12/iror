@@ -70,7 +70,29 @@ function Addtrain() {
       starttime: trainInfo.starttime,
     };
     console.log(formData);
-  };
+
+      e.preventDefault();
+      try {
+        const response = await fetch("http://localhost:5050/addTrain", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        let res = await response.json();
+        console.log(res);
+        // if(!res.success){
+        //   alert("Login Failed");
+        // }
+        // else{
+        //   sessionStorage.setItem("typeUser", "user");
+        //   sessionStorage.setItem("userID", res.userId);
+        //   alert("Successfully Logged In");
+        //   window.location.href = "/";
+        // }
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
   const addFields = () => {
     let object = {
