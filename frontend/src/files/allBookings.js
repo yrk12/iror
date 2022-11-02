@@ -36,19 +36,22 @@ export default function AllTrain() {
         });
         //console.log(response);
         const res = await response.json();
-        //console.log(res);
+        console.log("resoinse here");
+        // console.log(res);
         for(var i = 0; i < res.allBookingsData.length; i++){
-          res.allBookingsData[i]["id"] = res.allBookingsData[i].trainid ;
+          res.allBookingsData[i]["id"] = i;
         }
         //console.log(response.allTrainsData);
         //const res = await response.json();
         console.log(res);
         setRows(res.allBookingsData);
+        console.log("here");
+        console.log(rows);
         // rws = res;
         // const a = res.allTrainsData;
         // console.log(typeof(a.allTrainsData));
         // console.log((res.allTrainsData));
-        // setRows(res.allTrainsData);
+        //setRows(res.allTrainsData);
         
       } catch (err) {
         console.log(err);
@@ -66,8 +69,8 @@ export default function AllTrain() {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSize={11}
+          rowsPerPageOptions={[11]}
         />
       </div>
     </div>
