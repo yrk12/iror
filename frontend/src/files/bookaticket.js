@@ -4,11 +4,14 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import "./bookaticket.css";
+import { useSearchParams } from 'react-router-dom';
 
 function Bookaticket() {
   const [formFields, setFormFields] = useState([
     { name: "", age: "", gender: "" }
   ]);
+  const [searchparams]=useSearchParams();
+  console.log(searchparams.get("routeId"));
 
   const [contactInfo, setContactInfo] = useState({
     email: "",
@@ -47,6 +50,24 @@ function Bookaticket() {
       email: contactInfo.email,
       contactno: contactInfo.contact,
       userId: userId,
+      routeId: searchparams.get("routeId"),
+      trainId: searchparams.get("id"),
+      sourceStation: searchparams.get("departure"),
+      destinationStation: searchparams.get("arrival"),
+      price: searchparams.get("price")*formFields.length,
+    }
+    console.log(formData);
+
+    try {
+      const response = await fetch("http://localhost:5050/bookTicket", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      let res = await response.json();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     }
   };
 
