@@ -1,13 +1,3 @@
-:root{
-    --primaryBlue: #1976D2;
-    --secondaryRed: #EF5350;
-    --secondaryBlue: #03A9F4;
-    --secondaryGreen: #4CAF50;
-    --bgWhite: #FDFDFF;
-    --bgBlack: #363636;
-    --bgBlue: #E7F1FF;
-}
-
 .navbar_main {
     display: flex;
     background-color: var(--bgBlue);
@@ -25,8 +15,17 @@
     color: var(--primaryBlue);
 }
 
+.margin-auto{
+    margin: auto 0px;
+}
+
+
+.a-link:visited{
+    color: var(--primaryBlue);
+}
+
 .nav_buttons_C {
-    flex : 1;
+    flex : 2;
     display: flex;
     margin: auto;
     padding-right: 100px;
