@@ -66,6 +66,10 @@ function Bookaticket() {
       });
       let res = await response.json();
       console.log(res);
+      if(res.created===true){
+        alert("Ticket Booked Succesfully");
+        window.location.href = "/mybookings";
+      }
     } catch (err) {
       console.log(err);
     }

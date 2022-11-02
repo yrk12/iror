@@ -66,8 +66,8 @@ export default function AllTrain() {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSize={11}
+          rowsPerPageOptions={[11]}
         />
       </div>
     </div>

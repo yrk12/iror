@@ -1,6 +1,6 @@
 import React from "react";
 import "./Details.css";
-import { Navigate, Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 import {createSearchParams , useNavigate} from "react-router-dom";
 function Details(props) {
     props=props.props;
@@ -29,8 +29,8 @@ function Details(props) {
                         <h3>{props.trainName}</h3>
                         <h3>{props.trainid}</h3>
                         <h4 style={{color: '#4CAF50'}}>{props.remainingSeats} Left</h4>
-                        <div style={{display: 'flex'}}>
-                            <button onClick={bookTicket}>Book</button>
+                        <div style={{display: 'flex', gap: 30}}>
+                            <Button onClick={bookTicket} variant="contained">Book</Button>
                             <h4 style={{color: '#03A9F4'}}>₹{props.price}</h4>
                         </div>
                     </div>

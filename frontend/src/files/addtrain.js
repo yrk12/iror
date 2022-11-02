@@ -80,15 +80,13 @@ function Addtrain() {
         });
         let res = await response.json();
         console.log(res);
-        // if(!res.success){
-        //   alert("Login Failed");
-        // }
-        // else{
-        //   sessionStorage.setItem("typeUser", "user");
-        //   sessionStorage.setItem("userID", res.userId);
-        //   alert("Successfully Logged In");
-        //   window.location.href = "/";
-        // }
+        if(!res.success){
+          alert("Train was not added.");
+        }
+        else{
+          alert("Train added.");
+          window.location.href = "/allTrains";
+        }
       } catch (err) {
         console.log(err);
       }

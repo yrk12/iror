@@ -21,15 +21,13 @@ function ChangePassword() {
         });
         let res = await response.json();
         console.log(res);
-        // if(!res.success){
-        //   alert("Login Failed");
-        // }
-        // else{
-        //   sessionStorage.setItem("typeUser", "user");
-        //   sessionStorage.setItem("userID", res.userId);
-        //   alert("Successfully Logged In");
-        //   window.location.href = "/";
-        // }
+        if(!res.success){
+          alert("Password Change Failed.");
+        }
+        else{
+          alert("Password Changed Succesfully.");
+          window.location.href = "/";
+        }
       } catch (err) {
         console.log(err);
       }
@@ -67,6 +65,7 @@ function ChangePassword() {
                 id="outlined-required"
                 name="oldPassword"
                 label="Old Password"
+                type="password"
                 onChange={handleChange}
               />
               <br />

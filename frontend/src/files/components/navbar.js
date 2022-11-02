@@ -108,7 +108,7 @@ function Navbar() {
               <a href="/allTrains" className="a-link margin-auto" style={{ textDecoration: "none" }}>
                 <div>View All Trains</div>
               </a>
-              <a href="/" className="a-link margin-auto" style={{ textDecoration: "none" }}>
+              <a href="/deleteTrain" className="a-link margin-auto" style={{ textDecoration: "none" }}>
                 <div>Delete Train</div>
               </a>
               <a href="/addTrain" className="a-link margin-auto" style={{ textDecoration: "none" }}>

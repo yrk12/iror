@@ -55,7 +55,7 @@ app.post("/register", async(req, res) =>{
         console.log(req);   
         const newUser = await pool.query(
             "INSERT INTO Users (FirstName, LastName, Email, ContactNo, Password) VALUES ($1, $2, $3, $4, $5)",
-            [req.fname, req.lname, req.email, req.contactNo, req.Password]
+            [req.fname.toLowerCase(), req.lname.toLowerCase(), req.email, req.contactNo, req.Password]
         );
         res.json({created: true});
     } catch (err) {
@@ -115,10 +115,8 @@ app.post("/allBookings", async(req, res) =>{
         let allBookingsData = await pool.query(
             "SELECT * FROM Tickets;"
         );
-            //console.log(allTrainsData.rows);
-        allBookingsData = allBookingsData.rows;
-            console.log(allBookingsData ); 
-            res.json({allBookingsData})
+        allBookingsData = allBookingsData.rows; 
+        res.json({allBookingsData})
     } catch (err) {
         res.json({success: false});
     }
@@ -192,7 +190,7 @@ app.post("/getTrains", async(req, res) =>{
         console.log(req);
         let trains = await pool.query(
             "SELECT DEPARTURE.TRAINID AS TRAINID, DEPARTURE.ROUTEID AS ROUTEID, DEPARTURE.CURRENTSTATION  AS DEPT, ARRIVAL.CURRENTSTATION AS ARR, to_char(DEPARTURE.CURRENTDATE, 'YYYY-MM-DD') AS DEPARTUREDATE, to_char(ARRIVAL.CURRENTDATE, 'YYYY-MM-DD') AS ARRIVALDATE, ARRIVAL.TIMEFROMSTART-DEPARTURE.TIMEFROMSTART AS DURATION, ARRIVAL.TIMEFROMSTART AS ARRIVALTIME, DEPARTURE.TIMEFROMSTART AS DEPARTURETIME FROM ROUTES AS DEPARTURE INNER JOIN ROUTES AS ARRIVAL ON (DEPARTURE.ROUTEID=ARRIVAL.ROUTEID AND DEPARTURE.TRAINID=ARRIVAL.TRAINID) WHERE DEPARTURE.CURRENTSTATION=$1 AND ARRIVAL.CURRENTSTATION=$2 AND ARRIVAL.TIMEFROMSTART>DEPARTURE.TIMEFROMSTART AND DEPARTURE.CURRENTDATE=$3;",
-            [req.departure, req.arrival, req.date]
+            [req.departure.toLowerCase(), req.arrival.toLowerCase(), req.date]
         );
         trains=trains.rows;
         //console.log(trains);
@@ -233,7 +231,6 @@ app.post("/getTrains", async(req, res) =>{
             })
         }
         console.log(trainDetails);
-
         res.json(trainDetails);
     } catch (err) {
         res.json(trainDetails);
@@ -315,10 +312,15 @@ app.post("/deleteTrain", async(req, res) =>{
     try { 
         console.log(req.body);
         const newUser = await pool.query(
-            "DELETE FROM TRAINS WHERE TRAINID=$1;",
+            "DELETE FROM TRAINS WHERE TRAINID=$1 RETURNING *;",
             [req.body.trainId]
         );
-        res.json({created: true});  
+        if(newUser.rows.length===0){
+            res.json({created: false});  
+        }
+        else{
+            res.json({created: true});  
+        }
     } catch (err) {
         res.json({created: false});
     }
@@ -401,7 +403,7 @@ app.post("/bookTicket", async(req, res) =>{
         console.log(req.passengers);  
         const newTicket = await pool.query(
             "INSERT INTO Tickets (UserID, RouteID, TrainID, SourceStation, DestinationStation, Price, Email, ContactNo, NoOfPassenger) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) returning TicketId;",
-            [req.userId, req.routeId, req.trainId, req.sourceStation, req.destinationStation, req.price , req.email, req.contactno, req.passengers.length]
+            [req.userId, req.routeId, req.trainId, req.sourceStation.toLowerCase(), req.destinationStation.toLowerCase(), req.price , req.email, req.contactno, req.passengers.length]
         );
         console.log(newTicket.rows[0]);
         let ticketId=parseInt(newTicket.rows[0].ticketid);
@@ -409,13 +411,13 @@ app.post("/bookTicket", async(req, res) =>{
         for(let i=0;i<req.passengers.length;i++){
             const newPassenger = await pool.query(
                 "INSERT INTO Passengers (TicketID, Name, Age, Gender) VALUES($1, $2, $3, $4);",
-                [ticketId, req.passengers[i].name, req.passengers[i].age, req.passengers[i].gender]
+                [ticketId, req.passengers[i].name.toLowerCase(), req.passengers[i].age, req.passengers[i].gender]
             );
         }
         
         const updateRemainingSeats = await pool.query(
             "UPDATE Routes SET RemainingSeats = (RemainingSeats - $1) WHERE TimefromStart >= (SELECT TimefromStart FROM Routes WHERE CurrentStation = $2 AND RouteID = $4 AND TrainID = $5) AND TimefromStart < (SELECT TimefromStart FROM Routes WHERE CurrentStation = $3 AND RouteID = $4 AND TrainID = $5) AND RouteID = $4 AND TrainID = $5;",
-            [req.passengers.length, req.sourceStation, req.destinationStation, req.routeId, req.trainId]
+            [req.passengers.length, req.sourceStation.toLowerCase(), req.destinationStation.toLowerCase(), req.routeId, req.trainId]
         );
         
         res.json({created: true});
@@ -431,26 +433,6 @@ app.post("/addTrain", async(req, res) =>{
     console.log(req.runson);
     console.log(weekday[req.runson]);
     let d1=getNextDay(new Date(), weekday[req.runson]), d2=getNextDay(d1, weekday[req.runson]);
-    let date="";
-    date=date+d1.getFullYear()+':';
-    if(d1.getMonth<10){
-        date+='0';
-    }
-    date+=d1.getMonth()+':';
-    if(d1.getDay){
-        date+='0';
-    }
-    let date2="";
-    date2=date2+d2.getFullYear()+':';
-    if(d2.getMonth<10){
-        date2+='0';
-    }
-    date2+=d2.getMonth()+':';
-    if(d2.getDay){
-        date2+='0';
-    }
-    date2+=d2.getDate();
-    console.log(date2);
     try {
         console.log(req);
         let maxRouteId = await pool.query(
@@ -461,17 +443,17 @@ app.post("/addTrain", async(req, res) =>{
         console.log(maxRouteId);
         let newTrain = await pool.query(
             "INSERT INTO Trains (TrainName, RunsOn, TotalSeats, StartTime) VALUES($1, $2, $3, $4) returning TrainID;",
-            [req.trainName, req.runson, req.totalseats, req.starttime]
+            [req.trainName.toLowerCase(), req.runson.toLowerCase(), req.totalseats, req.starttime]
         );
         newTrain=newTrain.rows[0];
         for(let i=0;i<req.routes.length;i++){
             const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, RouteID) VALUES($1, $2, $3, $4, $5, $6);",
-                [newTrain.trainid, req.routes[i].station, req.totalseats, req.routes[i].timeFromStart, d1, maxRouteId.max+1]
+                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, d1, maxRouteId.max+1]
             );
         }
         for(let i=0;i<req.routes.length;i++){
             const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, routeID) VALUES($1, $2, $3, $4, $5, $6);",
-                [newTrain.trainid, req.routes[i].station, req.totalseats, req.routes[i].timeFromStart, d2, maxRouteId.max+2]
+                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, d2, maxRouteId.max+2]
             );
         }
         
@@ -487,4 +469,3 @@ app.post("/addTrain", async(req, res) =>{
 app.listen(5050, () => {
     console.log("server has started on port 5050");
 });
-

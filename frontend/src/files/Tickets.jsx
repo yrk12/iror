@@ -29,11 +29,11 @@ function Tickets(props) {
         });
         let res = await response.json();
         console.log(res);
-        //console.log(bookings);
       } catch (err) {
         console.log(err);
     }
     setOpen(false);
+    window.location.href = "/mybookings";
   }
 
   props = props.props;
