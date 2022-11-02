@@ -19,6 +19,8 @@ function Mybookings () {
               body: JSON.stringify(userId),
             });
             let res = await response.json();
+            console.log("here");
+            console.log(res);
             //console.log(res);
             setBookings(res);
             //console.log(bookings);

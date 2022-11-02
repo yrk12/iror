@@ -282,11 +282,11 @@ app.post("/getRoute", async(req, res) =>{
 
 
 app.post("/deleteTrain", async(req, res) =>{
-    try {
-        trainId=9;  
+    try { 
+        console.log(req.body);
         const newUser = await pool.query(
             "DELETE FROM TRAINS WHERE TRAINID=$1;",
-            [trainId]
+            [req.body.trainId]
         );
         res.json({created: true});  
     } catch (err) {
@@ -296,10 +296,10 @@ app.post("/deleteTrain", async(req, res) =>{
 
 app.post("/deleteTicket", async(req, res) =>{
     try {
-        ticketId=5;  
+        console.log(req.body);  
         const newUser = await pool.query(
             "DELETE FROM TICKETS WHERE TICKETID=$1;",
-            [ticketId]
+            [req.body.ticketId]
         );
         res.json({created: true});
     } catch (err) {
@@ -351,7 +351,8 @@ app.post("/getBookings", async(req, res) =>{
                 runsOn: train.runson,
                 arrivalStation: tickets[i].destinationstation,
                 arrivalTime: arrivalTime,
-                arrivalDate: stationDetails.arrivaldate
+                arrivalDate: stationDetails.arrivaldate,
+                ticketId: tickets[i].ticketid
             })
 
         }

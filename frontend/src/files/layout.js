@@ -15,6 +15,7 @@ import Bookaticket from './bookaticket';
 import AllTrains from './allTrains';
 import AllBookings from './allBookings';
 import Addtrain from './addtrain';
+import DeleteTrain from './deleteTrain';
 
 import './files.css'
 
@@ -38,6 +39,7 @@ function Layout() {
             <Route path='/allTrains' element={<AllTrains/>} />
             <Route path='/allBookings' element={<AllBookings/>} />
             <Route path='/addTrain' element={<Addtrain/>} />
+            <Route path='/deleteTrain' element={<DeleteTrain/>} />
         </Routes>
         <Footer/>
     </Router>
