@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 
 function Tickets(props) {
     props=props.props;
+    console.log(props);
     const months={"01": "Jan","02": "Feb","03": "Mar","04": "Apr","05": "May","06": "Jun","07": "Jul","08": "Aug","09": "Sep","10": "Oct","11": "Nov","12": "Dec"};
     return (
         <div className="tickets-box">
