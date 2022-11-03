@@ -55,8 +55,6 @@ The Ministry of Railways of the Government of India owns Indian Railways, a lega
 
 ## Removal of Non-Binary Relationship
 
--
-
 ![IROR-Removing-Non-Binary-Relationships.png](images/IROR-Removing-Non-Binary-Relationships.png)
 
 ## Adding Attributes to Entities
