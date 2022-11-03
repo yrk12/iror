@@ -101,11 +101,11 @@ TrainName → TrainsID
 
 ### Routes
 
-RouteID, TrainID, Station, Date → TimeFromStart, RemainningSeats
+RouteID, TrainID, Station → TimeFromStart, RemainningSeats, Date
 
-**Candidate Keys: {**RouteID, TrainID, Station, Date**}**
+**Candidate Keys: {**RouteID, TrainID, Station**}**
 
-**Primary Keys: {**RouteID, TrainID, Station, Date**}**
+**Primary Keys: {**RouteID, TrainID, Station**}**
 
 ### Tickets
 
