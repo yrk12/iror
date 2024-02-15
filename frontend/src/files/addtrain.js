@@ -22,36 +22,11 @@ function Addtrain() {
     const newValue = event.target.value;
     const inputName = event.target.name;
     setTrainInfo((preValue) => {
-      if (inputName === "trainName") {
-        return {
-          trainName: newValue,
-          runson: preValue.runson,
-          totalseats: preValue.totalseats,
-          starttime: preValue.starttime,
-        };
-      } else if (inputName === "runson") {
-        return {
-          trainName: preValue.trainName,
-          runson: newValue,
-          totalseats: preValue.totalseats,
-          starttime: preValue.starttime,
-        };
-      } else if (inputName === "totalseats") {
-        return {
-          trainName: preValue.trainName,
-          runson: preValue.runson,
-          totalseats: newValue,
-          starttime: preValue.starttime,
-        };
-      } else {
-        return {
-          trainName: preValue.trainName,
-          runson: preValue.runson,
-          totalseats: preValue.totalseats,
-          starttime: newValue,
-        };
+      return {
+        ...preValue,
+        [inputName]: newValue
       }
-    });
+    })
   };
 
   const handleRouteForm = (event, index) => {
@@ -81,7 +56,7 @@ function Addtrain() {
         let res = await response.json();
         console.log(res);
         if(!res.success){
-          alert("Train was not added.");
+          alert(res.msg);
         }
         else{
           alert("Train added.");
@@ -104,7 +79,6 @@ function Addtrain() {
   const removeFields = (index) => {
     let data = [...routeFileds];
     data.splice(index, 1);
-
     setRouteFiles(data);
   };
 
@@ -175,7 +149,7 @@ function Addtrain() {
                     />
                   </div>
                   <div className="route-form-repeat-child">
-                    <Button color="warning" variant="contained" onClick={removeFields}>
+                    <Button color="warning" variant="contained" onClick={() => removeFields(index)}>
                       Remove Station
                     </Button>
                   </div>

@@ -34,22 +34,12 @@ export default function AllTrain() {
               method: "POST",
               headers: { "Content-Type": "application/json" }, 
             });
-            //console.log(response);
             const res = await response.json();
-            //console.log(res);
             for(var i = 0; i < res.allTrainsData.length; i++){
               res.allTrainsData[i]["id"] = res.allTrainsData[i].trainid ;
             }
-            //console.log(response.allTrainsData);
-            //const res = await response.json();
             console.log(res);
             setRows(res.allTrainsData);
-            // rws = res;
-            // const a = res.allTrainsData;
-            // console.log(typeof(a.allTrainsData));
-            // console.log((res.allTrainsData));
-            // setRows(res.allTrainsData);
-            
           } catch (err) {
             console.log(err);
           }

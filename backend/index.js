@@ -435,6 +435,13 @@ app.post("/addTrain", async(req, res) =>{
     let d1=getNextDay(new Date(), weekday[req.runson]), d2=getNextDay(d1, weekday[req.runson]);
     try {
         console.log(req);
+        for(let i=1;i<req.routes.length;i++){
+            if(req.routes[i].timeFromStart<=req.routes[i-1].timeFromStart | req.routes[i]<0){
+                console.log("Invalid Station Timing");
+                res.json({success: false, msg: "Invalid Station Timing"});
+                return ;
+            }
+        }
         let maxRouteId = await pool.query(
             "SELECT MAX(ROUTEID) FROM ROUTES;",
             []
@@ -456,14 +463,11 @@ app.post("/addTrain", async(req, res) =>{
                 [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, d2, maxRouteId.max+2]
             );
         }
-        
-        
         res.json({success: true});
     } catch (err) {
         console.log(err);
-        res.json({success: false});
+        res.json({success: false, msg: "Train addition failed"});
     }
-
 });
 
 app.listen(5050, () => {
