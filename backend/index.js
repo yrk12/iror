@@ -193,7 +193,7 @@ app.post("/getTrains", async(req, res) =>{
             [req.departure.toLowerCase(), req.arrival.toLowerCase(), req.date]
         );
         trains=trains.rows;
-        //console.log(trains);
+        console.log(trains);
         for(let i=0;i<trains.length;i++){
             let currenTrain = await pool.query(
                 "SELECT * FROM TRAINS WHERE TRAINID=$1;",
@@ -316,13 +316,13 @@ app.post("/deleteTrain", async(req, res) =>{
             [req.body.trainId]
         );
         if(newUser.rows.length===0){
-            res.json({created: false});  
+            res.json({deleted: false, msg: "Invalid Train Id"});  
         }
         else{
-            res.json({created: true});  
+            res.json({deleted: true, msg: "Train deleted"});  
         }
     } catch (err) {
-        res.json({created: false});
+        res.json({deleted: false, msg: "Error in Train Deletion"});
     }
 });
 
@@ -433,11 +433,16 @@ app.post("/addTrain", async(req, res) =>{
     console.log(req.runson);
     console.log(weekday[req.runson]);
     let d1=getNextDay(new Date(), weekday[req.runson]), d2=getNextDay(d1, weekday[req.runson]);
+    let [hours, minutes] = req.starttime.split(':');
+    d1.setHours(parseInt(hours))
+    d1.setMinutes(parseInt(minutes))
+    d2.setHours(parseInt(hours))
+    d2.setMinutes(parseInt(minutes))
     try {
         console.log(req);
         for(let i=1;i<req.routes.length;i++){
             if(req.routes[i].timeFromStart<=req.routes[i-1].timeFromStart | req.routes[i]<0){
-                console.log("Invalid Station Timing");
+                console.log("Invalid Stating Timing");
                 res.json({success: false, msg: "Invalid Station Timing"});
                 return ;
             }
@@ -454,13 +459,17 @@ app.post("/addTrain", async(req, res) =>{
         );
         newTrain=newTrain.rows[0];
         for(let i=0;i<req.routes.length;i++){
+            let stationDate = new Date(d1);
+            stationDate.setTime(stationDate.getTime() + parseInt(req.routes[i].timeFromStart)*60000)
             const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, RouteID) VALUES($1, $2, $3, $4, $5, $6);",
-                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, d1, maxRouteId.max+1]
+                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, stationDate, maxRouteId.max+1]
             );
         }
         for(let i=0;i<req.routes.length;i++){
+            let stationDate = new Date(d2);
+            stationDate.setTime(stationDate.getTime() + parseInt(req.routes[i].timeFromStart)*60000)
             const newRoute = await pool.query("INSERT INTO Routes (TrainID, CurrentStation, RemainingSeats, TimefromStart, CurrentDate, routeID) VALUES($1, $2, $3, $4, $5, $6);",
-                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, d2, maxRouteId.max+2]
+                [newTrain.trainid, req.routes[i].station.toLowerCase(), req.totalseats, req.routes[i].timeFromStart, stationDate, maxRouteId.max+2]
             );
         }
         res.json({success: true});

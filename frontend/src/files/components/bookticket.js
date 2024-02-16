@@ -45,24 +45,9 @@ function Bookticket() {
     const newValue = event.target.value;
     const inputname = event.target.name;
     setTrainDetails((prevValue) => {
-      if (inputname === "departure") {
-        return {
-          departure: newValue,
-          arrival: prevValue.arrival,
-          date: prevValue.date,
-        };
-      } else if (inputname === "arrival") {
-        return {
-          departure: prevValue.departure,
-          arrival: newValue,
-          date: prevValue.date,
-        };
-      } else {
-        return {
-          departure: prevValue.departure,
-          arrival: prevValue.arrival,
-          date: newValue,
-        };
+      return {
+        ...prevValue,
+        [inputname]: newValue
       }
     });
   }

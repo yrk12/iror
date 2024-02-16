@@ -16,12 +16,7 @@ function DeleteTrain() {
         });
         let res = await response.json();
         console.log(res);
-        if(res.created===true){
-          alert("Train succesfully deleted.");
-        }
-        else{
-          alert("Train was not deleted.");
-        }
+        alert(res.msg)
       } catch (err) {
         console.log(err);
     }
