@@ -32,16 +32,9 @@ function Login(props) {
     const newValue = event.target.value;
     const inputname = event.target.name;
     setUser((prevValue) => {
-      if (inputname === "email") {
-        return {
-          email: newValue,
-          Password: prevValue.Password,
-        };
-      } else {
-        return {
-          email: prevValue.email,
-          Password: newValue,
-        };
+      return {
+        ...prevValue,
+        [inputname]: newValue
       }
     });
   }
