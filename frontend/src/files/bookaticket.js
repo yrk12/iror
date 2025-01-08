@@ -22,16 +22,9 @@ function Bookaticket() {
     const newValue = event.target.value;
     const inputname = event.target.name;
     setContactInfo((prevValue) => {
-      if (inputname === "email") {
-        return {
-          email: newValue,
-          contact: prevValue.contact
-        };
-      } else {
-        return {
-          email: prevValue.email,
-          contact: newValue
-        };
+      return {
+        ...prevValue,
+        [inputname]: newValue
       }
     });
   }

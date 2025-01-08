@@ -16,50 +16,9 @@ function Register() {
       const newValue = event.target.value;
       const inputname = event.target.name; 
       setUser(prevValue => {
-        if(inputname === "fname"){
-            return {
-              fname: newValue,
-              lname: prevValue.lname,
-              email: prevValue.email,
-              contactNo: prevValue.contactNo,
-              Password: prevValue.Password,
-            };
-        }
-        if(inputname === "lname"){
-            return {
-              fname: prevValue.fname,
-              lname: newValue,
-              email: prevValue.email,
-              contactNo: prevValue.contactNo,
-              Password: prevValue.Password
-            };
-        }
-        if(inputname === "email"){
-          return {
-            fname: prevValue.fname,
-            lname: prevValue.lname,
-            email: newValue,
-            contactNo: prevValue.contactNo,
-            Password: prevValue.Password
-          };
-        }
-        if(inputname === "contactNo"){
-          return {
-            fname: prevValue.fname,
-            lname: prevValue.lname,
-            email: prevValue.email,
-            contactNo: newValue,
-            Password: prevValue.Password
-          };
-        }
-        if(inputname === "password"){
-          return {
-            fname: prevValue.fname,
-            lname: prevValue.lname,
-            email: prevValue.email,
-            contactNo: prevValue.contactNo,
-            Password: newValue
-          };
+        return {
+          ...prevValue,
+          [inputname]: newValue
         }
       })
     }
